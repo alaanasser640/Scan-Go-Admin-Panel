@@ -15,7 +15,6 @@
 
 @section('content')
     <div class="row">
-
         <!-- Welcome card -->
         <div class="col-lg-8 mb-4 order-0">
             <div class="card">
@@ -33,7 +32,7 @@
                     </div>
                     <div class="col-sm-5 text-center text-sm-left">
                         <div class="card-body pb-0 px-0 px-md-4">
-                            <img src="{{ asset('assets/images/illustrations/man-with-laptop-light.png') }}" height="140"
+                            <img src="{{ asset('assets/images/illustrations/man-with-laptop-green.png') }}" height="140"
                                 alt="View Badge User" data-app-dark-img="illustrations/man-with-laptop-dark.png"
                                 data-app-light-img="illustrations/man-with-laptop-light.png" />
                         </div>
@@ -146,10 +145,11 @@
             </div>
         </div>
         <!-- /Cards -->
-
     </div>
 
+    <!-- Charts -->
     <div class="row" style="margin-top: -440px;">
+
         <!-- Receipts Statistics -->
         <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
             <div class="card h-100">
@@ -167,7 +167,7 @@
                             <h2 class="mb-2">8,258</h2>
                             <span>Total Orders</span>
                         </div>
-                        <div id="orderStatisticsChart"></div>
+                        <div id="receiptStatisticsChart"></div>
                     </div>
 
                     <ul class="p-0 m-0">
@@ -229,38 +229,21 @@
         </div>
         <!--/ Receipts Statistics -->
 
-
-
-
-        <!-- Expense Overview -->
+        <!-- Best Selling Statistics -->
         <div class="col-md-6 col-lg-4 order-1 mb-4">
             <div class="card h-100">
                 <div class="card-header">
                     <div class="card-title mb-0">
-                        <h5 class="m-0 me-2">Receipts Statistics</h5>
-                        <small class="text-muted">42.82k Total Sales</small>
+                            <h5 class="m-0 me-2">Best Selling Statistics</h5>
+                            <small class="text-muted">42.82k Total Sales</small>
                     </div>
                 </div>
                 <div class="card-body px-0">
                     <div class="tab-content p-0">
-                        <div class="tab-pane fade show active" id="navs-tabs-line-card-income" role="tabpanel">
-                            <div class="d-flex p-4 pt-3">
-                                <div class="avatar flex-shrink-0 me-3">
-                                    <i class="icon-card card-1 bx bx-category"></i>
-                                </div>
-                                <div>
-                                    <small class="text-muted d-block">Total Balance</small>
-                                    <div class="d-flex align-items-center">
-                                        <h6 class="mb-0 me-1">$459.10</h6>
-                                        <small class="text-success fw-semibold">
-                                            <i class="bx bx-chevron-up"></i>
-                                            42.9%
-                                        </small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="incomeChart"></div>
-                            <div class="d-flex justify-content-center pt-4 gap-2">
+                        <div class="tab-pane fade show active mt-5" id="navs-tabs-line-card-income" role="tabpanel">
+                            <div id="sellingChart"></div>
+                            <!-- Expenses Of Week -->
+                            {{-- <div class="d-flex justify-content-center pt-4 gap-2">
                                 <div class="flex-shrink-0">
                                     <div id="expensesOfWeek"></div>
                                 </div>
@@ -268,14 +251,18 @@
                                     <p class="mb-n1 mt-1">Expenses This Week</p>
                                     <small class="text-muted">$39 less than last week</small>
                                 </div>
-                            </div>
+                            </div> --}}
+                            <!-- / Expenses Of Week -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!--/ Expense Overview -->
-
+        <!--/ Best Selling Statistics -->
 
     </div>
+    <!-- /Charts -->
+
+
+
 @endsection

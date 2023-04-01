@@ -38,19 +38,19 @@
                 <form action="" method="">
 
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">First Name </label>
+                        <label class="col-sm-2 col-form-label">Username </label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="text" class="form-control" value="First Name" disabled />
+                                <input type="text" class="form-control" value="Username" disabled />
                             </div>
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">Last Name </label>
+                        <label class="col-sm-2 col-form-label">Image</label>
                         <div class="col-sm-10">
-                            <div class="input-group input-group-merge">
-                                <input type="text" class="form-control" value="Last Name" disabled />
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="IMG-123456" disabled />
                             </div>
                         </div>
                     </div>
@@ -82,21 +82,10 @@
                         </div>
                     </div>
 
-
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">Image</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <input type="text" class="form-control" value="IMG-123456" disabled />
-                            </div>
-                        </div>
-                    </div>
-
-
                     <br><br>
                     <div class="row justify-content-end">
                         <div class="col-sm-10">
-                            <button type="submit" class="btn btn-danger">Dlete</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <button type="button" class="btn btn-secondary">Cancel</button>
                         </div>

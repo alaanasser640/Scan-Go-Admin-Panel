@@ -5,75 +5,94 @@
 @endsection
 
 @section('content')
-    <div class="container d-flex justify-content-center align-items-center min-vh-100">
-        <div class="row border rounded-5 p-3 bg-white shadow box-area">
+    <div class="col-md-9">
+        <div class="card" style="border-radius: 15px;">
+            <div class="row g-0">
 
-            <!------ Right Box (form) ---------------------------->
+                <div class="col-md-6 ps-4">
+                    <div class="card-body">
 
-            <div class="col-md-6 right-box">
-                {{-- <div class="brand-logo">
-        <img src="../assets/images/orango logo.png">
-      </div> --}}
-                <div class="row align-items-center">
-                    <div class="header-text mb-4"><br>
-                        <h2>Log<span style="color:rgba(253,196,0,1);">in</span></h2>
+                        <!-- Logo -->
+                        <div class="app-brand mt-2">
+                            <a href="{{ url('/') }}" class="app-brand-link gap-2">
+                                <span class="app-brand-logo demo">
+                                    <img src="{{ asset('assets/images/orango mini logo.png') }}" />
+                                </span>
+                                <span class="font-family app-brand-text demo text-body fw-bolder text-primary">OranGo</span>
+                            </a>
+                        </div>
+                        <!-- /Logo -->
+
+                        <br><br>
+                        {{-- Header --}}
+                        <h2 class="font-family fw-bold">Log<span style="color:rgba(253,196,0,1);">in</span></h2>
+                        <p>let's get started, Sign in to continue. </p>
+                        {{-- / Header --}}
+
                         <br>
-                        <p>let's get started, Sign in to continue </p>
+                        {{-- Form --}}
+                        <form action="" method="">
+
+                            <div class="mb-3">
+                                <div class="col-sm-11">
+                                    <div class="input-group input-group-merge">
+                                        <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                                        <input type="email" class="form-control" placeholder="Email" required />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="col-sm-11">
+                                    <div class="input-group input-group-merge">
+                                        <span class="input-group-text"><i class="bx bx-lock"></i></span>
+                                        <input type="password" class="form-control" placeholder="Password" required />
+                                        <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between col-sm-11">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="remember-me" />
+                                    <label class="form-check-label" for="remember-me">Keep me signed in </label>
+                                </div>
+                                <a href="{{ url('/reset_password') }}">
+                                    <small>Forgot Password?</small>
+                                </a>
+                            </div>
+
+                            <br><br>
+                            <br><br>
+                            <br><br>
+                            <div class="row">
+                                <div class="col-sm-11 d-grid">
+                                    <button type="submit" class="btn btn-primary">LOGIN</button>
+                                </div>
+                            </div>
+
+                        </form>
+                        {{-- / Form --}}
+
                     </div>
-                    <br>
-
-
-                    <form action="" enctype="multipart/form-data">
-
-                        <div class="input-field">
-                            <i class="mdi mdi-email"></i>
-                            <input type="email" placeholder="Email" required />
-                        </div>
-
-                        <div class="input-field">
-                            <i class="mdi mdi-lock"></i>
-                            <input type="password" placeholder="Password" required />
-                        </div>
-
-                        <div class=" mb-5 mt-4 d-flex justify-content-between">
-                            <div>
-                                <input type="checkbox" class="form-check-input" id="formCheck">
-                                <label for="formCheck" class="form-check-label text-secondary"><small> &nbsp; Keep me sign
-                                        in</small></label>
-                            </div>
-                            <div class="forgot">
-                                <small><a href="{{ url('/reset_password') }}">Forgot Password?</a></small>
-                            </div>
-                        </div>
-
-                        <br><br><br>
-                        <br><br><br>
-                        <div class="input-group mb-3">
-                            <a type="submit" href="{{ url('/') }}" class="btn btn-lg btn-primary w-100 fs-6">LOGIN</a>
-                        </div>
-
-                    </form>
-
                 </div>
+
+                {{-- Image --}}
+                <div class="col-md-6  right-box">
+                    <div class="px-5">
+                        <img class="card-img card-img-left" src="{{ asset('assets/images/illustrations/sign in.png') }}"
+                            alt="Card image">
+                    </div>
+                    <div class="row">
+                        <span class="fs-5 mb-4">
+                            New Here? &nbsp; <a class="fw-semibold" href="{{ url('/sign_up') }}">Sign Up</a>
+                        </span>
+                    </div>
+                </div>
+                {{-- / Image --}}
+
+
             </div>
-
-            <!------ Left Box (image) ------------------------->
-            <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box"
-                style="background: #FFF3D1;">
-                <div class="featured-image mb-3">
-                    <img src="../assets/images/sign in.png" class="img-fluid" style="width: 400px;">
-                </div>
-                <br>
-                <div class="row" style="margin-bottom: 30px;margin-top: 15px;">
-                    <span>
-                        New Here? &nbsp;
-                        <a href="{{ url('/sign_up') }}">Sign Up</a>
-                    </span>
-                </div>
-            </div>
-
-
-
         </div>
     </div>
 @endsection

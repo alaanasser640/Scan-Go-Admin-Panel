@@ -45,11 +45,11 @@
 
                 <!-- Logo -->
                 <div class="app-brand demo">
-                    <a href="index.html" class="app-brand-link">
+                    <a href="{{ url('/') }}" class="app-brand-link">
                         <span class="app-brand-logo demo">
                             <img src="{{ asset('assets/images/orango mini logo.png') }}">
                         </span>
-                        <span class="app-brand-text demo menu-text fw-bolder ms-3">OranGo</span>
+                        <span class="font-family app-brand-text demo menu-text fw-bolder ms-3">OranGo</span>
                     </a>
 
                     <a href="javascript:void(0);"
@@ -163,7 +163,7 @@
                     </li>
 
                     <!-- Contact -->
-                    <li class="menu-item {{ Request::is('contact') || Request::is('delete_contact')? 'active' : '' }}">
+                    <li class="menu-item {{ Request::is('contact') || Request::is('delete_contact') ? 'active' : '' }}">
                         <a href="{{ url('/contact') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-headphone"></i>
                             <div data-i18n="Analytics">Contact</div>
@@ -178,7 +178,7 @@
                     {{-- Login --}}
                     <li class="menu-item">
                         <a href="{{ url('/log_in') }}" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-log-in"></i>
+                            <i class="menu-icon tf-icons bx bx-log-in-circle"></i>
                             <div data-i18n="Analytics">Login</div>
                         </a>
                     </li>
@@ -300,7 +300,7 @@
                 </div>
                 <!-- Content wrapper -->
             </div>
-            <!-- / Layout page -->
+            <!-- / Layout container -->
         </div>
 
         <!-- Overlay -->

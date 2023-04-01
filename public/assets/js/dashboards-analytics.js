@@ -16,7 +16,7 @@
 
   // Order Statistics Chart
   // --------------------------------------------------------------------
-  const chartOrderStatistics = document.querySelector('#orderStatisticsChart'),
+  const chartOrderStatistics = document.querySelector('#receiptStatisticsChart'),
     orderChartConfig = {
       chart: {
         height: 165,
@@ -69,7 +69,7 @@
                 show: true,
                 fontSize: '0.8125rem',
                 color: axisColor,
-                label: 'Weekly',
+                label: 'Total',
                 formatter: function (w) {
                   return '38%';
                 }
@@ -84,9 +84,9 @@
     statisticsChart.render();
   }
 
-  // Income Chart - Area chart
+  // Best Selling Statistics Chart - Area chart
   // --------------------------------------------------------------------
-  const incomeChartEl = document.querySelector('#incomeChart'),
+  const incomeChartEl = document.querySelector('#sellingChart'),
     incomeChartConfig = {
       series: [
         {
@@ -122,7 +122,7 @@
             fillColor: config.colors.white,
             seriesIndex: 0,
             dataPointIndex: 7,
-            strokeColor: config.colors.primary,
+            strokeColor: config.colors.info,
             strokeWidth: 2,
             size: 6,
             radius: 8
@@ -132,7 +132,7 @@
           size: 7
         }
       },
-      colors: [config.colors.primary],
+      colors: [config.colors.info],
       fill: {
         type: 'gradient',
         gradient: {
@@ -154,7 +154,7 @@
         }
       },
       xaxis: {
-        categories: ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+        categories: ['', 'Bread', 'Cheese', 'Vege.', 'Fruits', 'Chicken', 'Fishes'],
         axisBorder: {
           show: false
         },
@@ -225,7 +225,7 @@
       },
       fill: {
         type: 'solid',
-        colors: config.colors.primary
+        colors: config.colors.info
       },
       stroke: {
         lineCap: 'round'

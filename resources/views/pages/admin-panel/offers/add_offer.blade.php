@@ -56,6 +56,7 @@
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                                 <input type="number" class="form-control" placeholder="Discount" required />
+                                <span class="input-group-text">%</span>
                             </div>
                         </div>
                     </div>

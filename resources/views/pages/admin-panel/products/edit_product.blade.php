@@ -99,6 +99,7 @@
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                                 <input type="number" class="form-control" placeholder="Price" required />
+                                <span class="input-group-text">L.E</span>
                             </div>
                         </div>
                     </div>

@@ -40,8 +40,7 @@
                     <tr class="text-nowrap">
                         <th> ID </th>
                         <th> Image </th>
-                        <th> First Name </th>
-                        <th> Last Name </th>
+                        <th> Username </th>
                         <th> Phone </th>
                         <th> Email </th>
                         <th> Credit Card </th>
@@ -62,6 +61,28 @@
                         <td>Table cell</td>
                         <td>Table cell</td>
                         <td>Table cell</td>
+                        <td>
+                            {{-- <a href="{{ url('/edit_customer') }}" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Edit">
+                                <i class="bx bxs-edit-alt text-info"></i>
+                            </a>
+                            &nbsp;&nbsp; --}}
+                            <a href="{{ url('/delete_customer') }}" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Delete">
+                                <i class="bx bx-trash text-danger"></i>
+                            </a>
+
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>
+                            <img src="{{ asset('assets/images/avatars/5.png') }}" alt="image" />
+                        </td>
+                        <td>Table cell</td>
+                        <td>Table cell</td>
+                        <td>Table cell</td>
+                        <td>Table cell</td>
+                        <td>Table cell</td>
                         <td>Table cell</td>
                         <td>
                             {{-- <a href="{{ url('/edit_customer') }}" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Edit">
@@ -86,7 +107,6 @@
                         <td>Table cell</td>
                         <td>Table cell</td>
                         <td>Table cell</td>
-                        <td>Table cell</td>
                         <td>
                             {{-- <a href="{{ url('/edit_customer') }}" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Edit">
                                 <i class="bx bxs-edit-alt text-info"></i>
@@ -104,31 +124,6 @@
                         <td>
                             <img src="{{ asset('assets/images/avatars/5.png') }}" alt="image" />
                         </td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>Table cell</td>
-                        <td>
-                            {{-- <a href="{{ url('/edit_customer') }}" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Edit">
-                                <i class="bx bxs-edit-alt text-info"></i>
-                            </a>
-                            &nbsp;&nbsp; --}}
-                            <a href="{{ url('/delete_customer') }}" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Delete">
-                                <i class="bx bx-trash text-danger"></i>
-                            </a>
-
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>
-                            <img src="{{ asset('assets/images/avatars/5.png') }}" alt="image" />
-                        </td>
-                        <td>Table cell</td>
                         <td>Table cell</td>
                         <td>Table cell</td>
                         <td>Table cell</td>

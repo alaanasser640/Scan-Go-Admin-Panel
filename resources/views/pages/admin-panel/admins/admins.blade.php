@@ -40,8 +40,7 @@
                     <tr class="text-nowrap">
                         <th> ID </th>
                         <th> Image </th>
-                        <th> First Name </th>
-                        <th> Last Name </th>
+                        <th>Username </th>
                         <th> Phone </th>
                         <th> Email </th>
                         <th> Last Login </th>
@@ -58,7 +57,6 @@
                         <td>Table cell</td>
                         <td>Table cell</td>
                         <td>Table cell</td>
-                        <td>Table cell</td>
                         <td>
                             <a href="{{ url('/edit_admin') }}" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Edit">
                                 <i class="bx bxs-edit-alt text-info"></i>
@@ -80,7 +78,6 @@
                         <td>Table cell</td>
                         <td>Table cell</td>
                         <td>Table cell</td>
-                        <td>Table cell</td>
                         <td>
                             <a href="{{ url('/edit_admin') }}" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Edit">
                                 <i class="bx bxs-edit-alt text-info"></i>
@@ -98,7 +95,6 @@
                         <td>
                             <img src="{{ asset('assets/images/avatars/5.png') }}" alt="image" />
                         </td>
-                        <td>Table cell</td>
                         <td>Table cell</td>
                         <td>Table cell</td>
                         <td>Table cell</td>

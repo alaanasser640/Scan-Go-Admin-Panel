@@ -1,82 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>OranGo - Reset Password </title>
-    <link rel="stylesheet" href="../assets/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="../assets/vendors/css/vendor.bundle.base.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="shortcut icon" href="../assets/images/orango mini logo.png" />
-  </head>
-  
-  <body>
-  
-    <div class="container-scroller">
-      
-        <div class="page-body-wrapper full-page-wrapper d-flex auth align-items-center justify-content-center">
-              <div class="p-4 shadow rounded-5">
-                  <div class="row p-3">
-            
-      <!------ Right Box (form) ---------------------------->
-          
-        <div class="col-md-6">
+@extends('pages.login-register.layout_2')
 
-          <div class="brand-logo">
-            <img src="../assets/images/orango logo.png">
-          </div>
-    
-          <div class="row align-items-center">
-                <div class="header-text mb-4"><br>
-                    <h2>
-                      Reset Password? 
-                      &ThinSpace; <i class="mdi mdi-lock"></i>
-                    </h2>
-                    <br>
-                    <p>Enter your email and we'll send you instructions to reset your password</p>
+@section('title')
+    Reset Password
+@endsection
+
+@section('content')
+    <div class="col-md-9">
+        <div class="card" style="border-radius: 15px;">
+            <div class="row g-0">
+
+                <div class="col-md-6 ps-4">
+                    <div class="card-body">
+
+                        <!-- Logo -->
+                        <div class="app-brand mt-2">
+                            <a href="{{ url('/') }}" class="app-brand-link gap-2">
+                                <span class="app-brand-logo demo">
+                                    <img src="{{ asset('assets/images/orango mini logo.png') }}" />
+                                </span>
+                                <span class="font-family app-brand-text demo text-body fw-bolder text-primary">OranGo</span>
+                            </a>
+                        </div>
+                        <!-- /Logo -->
+
+                        <br><br>
+                        {{-- Header --}}
+                        <h2 class="font-family fw-bold">Reset<span style="color:rgba(253,196,0,1);"> Password</span></h2>
+                        <p>Enter your email and we'll send you instructions to reset your password.</p>
+                        {{-- / Header --}}
+
+                        <br>
+                        {{-- Form --}}
+                        <form action="" method="">
+
+                            <div class="mb-3">
+                                <div class="col-sm-11">
+                                    <div class="input-group input-group-merge">
+                                        <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                                        <input type="email" class="form-control" placeholder="Email" required />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br><br>
+                            <br><br>
+                            <br><br>
+                            <div class="row">
+                                <div class="col-sm-11 d-grid">
+                                    <button type="submit" class="btn btn-primary">Send Reset Link</button>
+                                    <br>
+                                    <button type="submit" class="btn btn-secondary">Resend Link</button>
+                                </div>
+                            </div>
+
+                        </form>
+                        {{-- / Form --}}
+
+                    </div>
                 </div>
-                <br>
-                
-                
-                <form class="pt-3" action="" enctype="multipart/form-data">
-              
-                <div class="input-field">
-                  <i class="mdi mdi-email"></i>
-                  <input type="email" placeholder="Email" required/>
+
+                {{-- Image --}}
+                <div class="col-md-6  right-box">
+                    <div class="px-5">
+                        <img class="card-img card-img-left" src="{{ asset('assets/images/illustrations/reset password.png') }}"
+                            alt="Card image">
+                    </div>
+                    <div class="row">
+                        <a class="fw-semibold text-secondary d-flex align-items-center justify-content-center" href="{{ url('/log_in') }}">
+                        <i class="bx bx-chevron-left bx-sm"></i>Back To Login
+                    </a>
+                    </div>
                 </div>
+                {{-- / Image --}}
 
-                <br><br>
-                <div class="input-group mb-3">
-                    <a type="submit" href="{{ url('/log_in')}}" class="btn btn-lg btn-primary w-100 fs-6">Send Reset Link</a>
-                </div>
-                
-              </form>
-
-          </div>
-
-        </div> 
-
-      <!------ Left Box (image) ------------------------->
-      <div class="col-md-6 d-flex justify-content-center align-items-center flex-column img-bac">
-        <div class="featured-image mb-3">
-          <img src="../assets/images/reset password.png" class="img-fluid" style="width: 400px;">
-        </div>
-        <br>
-        <div class="row" style="margin-bottom: 30px;margin-top: 15px;">
-          <span>
-            <i class="mdi mdi-arrow-left"></i> &ThinSpace; Back To
-            <a href="{{ url('/log_in')}}">Login</a>
-          </span>
-        </div>
-      </div> 
-  
 
             </div>
-          </div>
-      </div>
+        </div>
     </div>
-      
-
-  </body>
-</html>
+@endsection

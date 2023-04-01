@@ -38,19 +38,19 @@
                 <form action="" method="">
 
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">First Name </label>
+                        <label class="col-sm-2 col-form-label">Username </label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="text" class="form-control" placeholder="First Name" required />
+                                <input type="text" class="form-control" placeholder="Username" required />
                             </div>
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">Last Name </label>
+                        <label class="col-sm-2 col-form-label">Image</label>
                         <div class="col-sm-10">
-                            <div class="input-group input-group-merge">
-                                <input type="text" class="form-control" placeholder="Last Name" required />
+                            <div class="input-group">
+                                <input type="file" class="form-control" required />
                             </div>
                         </div>
                     </div>
@@ -73,15 +73,16 @@
                         </div>
                     </div>
 
-
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">Image</label>
+                        <label class="col-sm-2 col-form-label">Password</label>
                         <div class="col-sm-10">
-                            <div class="input-group">
-                                <input type="file" class="form-control" required />
+                            <div class="input-group input-group-merge">
+                                <input type="password" class="form-control" placeholder="*******" required />
+                                <span class="input-group-text cursor-pointer" id="basic-default-password"><i class="bx bx-hide"></i></span>
                             </div>
                         </div>
                     </div>
+                    
 
 
                     <br><br>

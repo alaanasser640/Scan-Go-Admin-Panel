@@ -158,7 +158,7 @@
                     <br><br>
                     <div class="row justify-content-end">
                         <div class="col-sm-10">
-                            <button type="submit" class="btn btn-danger">Dlete</button>
+                            <button type="submit" class="btn btn-danger">Delete</button>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <button type="button" class="btn btn-secondary">Cancel</button>
                         </div>

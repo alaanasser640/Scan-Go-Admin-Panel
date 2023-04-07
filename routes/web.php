@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\DashboardController;
 
 use App\Models\Category;
 use Illuminate\Support\Facades\Http;
@@ -28,77 +29,38 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::get('/', function () {
-    return view('pages.admin-panel.dashboard.dashboard');
-});
 
-
-Route::get('/profile', function () {
-    return view('pages.admin-panel.profile.profile');
-});
-
-Route::get('/notification', function () {
-    return view('pages.admin-panel.notification_profile.notification');
-});
-
-Route::get('/purchase', function () {
-    return view('pages.admin-panel.purchase.purchase');
-});
-
+//Dashboard
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
 //Categories
-Route::get('/categories',[CategoryController::class, 'index'])->name('indexCategory');
-Route::post('/addCategory',[CategoryController::class, 'store'])->name('addCategory');
-Route::put('/update',[CategoryController::class, 'update'])->name('updateCategory');
-Route::delete('/destroy',[CategoryController::class, 'destroy'])->name('destroyCategory');
-Route::post('/searchCategory',[CategoryController::class, 'search'])->name('searchCategory');
-
-Route::get('/add_category', function () {
-    return view('pages.admin-panel.categories.add_category');
-});
-Route::get('/edit_category', function () {
-    return view('pages.admin-panel.categories.edit_category');
-});
-Route::get('/delete_category', function () {
-    return view('pages.admin-panel.categories.delete_category');
-});
+Route::resource('categories', CategoryController::class);
 
 //Products
-Route::get('/products',[ProductController::class, 'index'])->name('products');
-Route::post('/addProduct',[ProductController::class, 'store'])->name('addProduct');
-Route::put('/updateProduct',[ProductController::class, 'update'])->name('updateProduct');
-Route::delete('/destroyProduct',[ProductController::class, 'destroy'])->name('destroyProduct');
-Route::post('/searchProduct',[ProductController::class, 'search'])->name('searchProduct');
-
-Route::get('/add_product', function () {
-    return view('pages.admin-panel.products.add_product');
-});
-Route::get('/edit_product', function () {
-    return view('pages.admin-panel.products.edit_product');
-});
-Route::get('/delete_product', function () {
-    return view('pages.admin-panel.products.delete_product');
-});
-
+Route::resource('products', ProductController::class);
 
 //Offers
-Route::get('/offers',[OfferController::class, 'index'])->name('offers');
-Route::post('/addOffer',[OfferController::class, 'store'])->name('addOffer');
-Route::put('/updateOffer',[OfferController::class, 'update'])->name('updateOffer');
-Route::delete('/destroyOffer',[OfferController::class, 'destroy'])->name('destroyOffer');
-Route::post('/searchOffer',[OfferController::class, 'search'])->name('searchOffer');
-Route::post('/expired',[OfferController::class, 'expired'])->name('expired');
+Route::resource('offers', OfferController::class);
 
-Route::get('/add_offer', function () {
-    return view('pages.admin-panel.offers.add_offer');
-});
-Route::get('/edit_offer', function () {
-    return view('pages.admin-panel.offers.edit_offer');
-});
-Route::get('/delete_offer', function () {
-    return view('pages.admin-panel.offers.delete_offer');
-});
+//Customers
+// Route::resource('customers', CustomerController::class);
 
+//Admins
+// Route::resource('admins', AdminController::class);
+
+//Receipts
+// Route::resource('receipts', ReceiptController::class);
+
+//Contact
+// Route::resource('contact', ContactController::class);
+
+
+
+// Route::get('/categories',[CategoryController::class, 'index'])->name('indexCategory');
+// Route::post('/addCategory',[CategoryController::class, 'store'])->name('addCategory');
+// Route::put('/update',[CategoryController::class, 'update'])->name('updateCategory');
+// Route::delete('/destroy',[CategoryController::class, 'destroy'])->name('destroyCategory');
+// Route::post('/searchCategory',[CategoryController::class, 'search'])->name('searchCategory');
 
 
 // Cutomers
@@ -132,13 +94,31 @@ Route::get('/delete_admin', function () {
 
 
 
-Route::get('/stored_carts', function () {
-    return view('pages.admin-panel.stored_carts.stored_carts');
+// Route::get('/stored_carts', function () {
+//     return view('pages.admin-panel.stored_carts.stored_carts');
+// });
+
+// Route::get('/used_carts', function () {
+//     return view('pages.admin-panel.used_carts.used_carts');
+// });
+
+
+// Route::get('/', function () {
+//     return view('pages.admin-panel.dashboard.dashboard');
+// });
+
+
+Route::get('/profile', function () {
+    return view('pages.admin-panel.profile.profile');
 });
 
-Route::get('/used_carts', function () {
-    return view('pages.admin-panel.used_carts.used_carts');
+Route::get('/notification', function () {
+    return view('pages.admin-panel.notification_profile.notification');
 });
+
+// Route::get('/purchase', function () {
+//     return view('pages.admin-panel.purchase.purchase');
+// });
 
 
 Route::get('/receipts', function () {

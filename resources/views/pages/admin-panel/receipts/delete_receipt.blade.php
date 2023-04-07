@@ -6,9 +6,9 @@
 
 @section('search_bar')
     <!-- Search -->
-    <div class="table-search d-flex align-items-center">
-        <i class="bx bx-search fs-4 lh-0"></i>
-        <input type="text" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search..." />
+    <div class="table-search-disabled d-flex align-items-center">
+        <i class="bx bx-search fs-4 lh-0"></i> 
+        <input type="text" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search..." disabled/>
     </div>
     <!-- /Search -->
 @endsection
@@ -160,7 +160,7 @@
                         <div class="col-sm-10">
                             <button type="submit" class="btn btn-danger">Delete</button>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <button type="button" class="btn btn-secondary">Cancel</button>
+                            <a class="btn btn-secondary" href="{{ url('/receipts') }}">Cancel</a>
                         </div>
                     </div>
 

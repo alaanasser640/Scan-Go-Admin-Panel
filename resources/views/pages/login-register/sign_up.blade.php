@@ -27,7 +27,7 @@
 
                     <!-- Logo -->
                     <div class="app-brand mt-2">
-                        <a href="{{ url('/') }}" class="app-brand-link gap-2">
+                        <a href="{{ route('dashboard') }}" class="app-brand-link gap-2">
                             <span class="app-brand-logo demo">
                                 <img src="{{ asset('assets/images/orango mini logo.png') }}" />
                             </span>

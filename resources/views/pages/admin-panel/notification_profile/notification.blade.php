@@ -6,16 +6,19 @@
 
 @section('search_bar')
     <!-- Search -->
-    <div class="table-search d-flex align-items-center">
-        <i class="bx bx-search fs-4 lh-0"></i>
-        <input type="text" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search..." />
-    </div>
+    <form action="" method="GET" accept-charset="UTF-8" role="search" style="width:80%;">
+        <div class="table-search d-flex align-items-center">
+            <i class="bx bx-search fs-4 lh-0"></i>
+            <input type="text" class="form-control border-0 shadow-none" name="search" value="{{ request('search') }}"
+                placeholder="Search..." aria-label="Search..." />
+        </div>
+    </form>
     <!-- /Search -->
 @endsection
 
 @section('content')
     <!-- Page header -->
-    <div class="">
+    <div>
         <ul class="nav nav-pills flex-column flex-md-row mb-3">
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/profile') }}">
@@ -48,6 +51,7 @@
                         <th> Admin Name </th>
                         <th> Description </th>
                         <th> Date </th>
+                        <th> Action </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,6 +63,11 @@
                         <td> Sara </td>
                         <td> This is the description of anything done by the others admins in the admin panel. </td>
                         <td> May 03, 2015 </td>
+                        <td>
+                            <a href="" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Delete">
+                                <i class="bx bx-trash text-danger"></i>
+                            </a>
+                        </td>  
                     </tr>
 
                     <tr>
@@ -69,6 +78,11 @@
                         <td> Sara </td>
                         <td> This is the description of anything done by the others admins in the admin panel. </td>
                         <td> May 03, 2015 </td>
+                        <td>
+                            <a href="" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Delete">
+                                <i class="bx bx-trash text-danger"></i>
+                            </a>
+                        </td>
                     </tr>
 
                     <tr>
@@ -79,6 +93,11 @@
                         <td> Sara </td>
                         <td> This is the description of anything done by the others admins in the admin panel. </td>
                         <td> May 03, 2015 </td>
+                        <td>
+                            <a href="" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Delete">
+                                <i class="bx bx-trash text-danger"></i>
+                            </a>
+                        </td>
                     </tr>
 
                     <tr>
@@ -89,6 +108,11 @@
                         <td> Sara </td>
                         <td> This is the description of anything done by the others admins in the admin panel. </td>
                         <td> May 03, 2015 </td>
+                        <td>
+                            <a href="" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Delete">
+                                <i class="bx bx-trash text-danger"></i>
+                            </a>
+                        </td>
                     </tr>
 
                     <tr>
@@ -99,6 +123,11 @@
                         <td> Sara </td>
                         <td> This is the description of anything done by the others admins in the admin panel. </td>
                         <td> May 03, 2015 </td>
+                        <td>
+                            <a href="" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Delete">
+                                <i class="bx bx-trash text-danger"></i>
+                            </a>
+                        </td>
                     </tr>
 
                     <tr>
@@ -109,6 +138,11 @@
                         <td> Sara </td>
                         <td> This is the description of anything done by the others admins in the admin panel. </td>
                         <td> May 03, 2015 </td>
+                        <td>
+                            <a href="" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Delete">
+                                <i class="bx bx-trash text-danger"></i>
+                            </a>
+                        </td>
                     </tr>
 
                 </tbody>

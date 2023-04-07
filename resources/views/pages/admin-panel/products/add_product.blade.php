@@ -6,13 +6,12 @@
 
 @section('search_bar')
     <!-- Search -->
-    <div class="table-search d-flex align-items-center">
-        <i class="bx bx-search fs-4 lh-0"></i>
-        <input type="text" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search..." />
+    <div class="table-search-disabled d-flex align-items-center">
+        <i class="bx bx-search fs-4 lh-0"></i> 
+        <input type="text" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search..." disabled/>
     </div>
     <!-- /Search -->
 @endsection
-
 @section('content')
     <!-- Form -->
     <div class="col-xxl">
@@ -25,7 +24,7 @@
                     <div>
                         <h4 class="fw-bold py-3 mb-4">
                             <i class="icon-header bg-warning bx bx-package"></i>
-                            <a class="text-muted fw-normal" href="{{ url('/products') }}">&nbsp;Products /</a>
+                            <a class="text-muted fw-normal" href="{{ route('products.index') }}">&nbsp;Products /</a>
                             Add New Product
                         </h4>
                     </div>
@@ -35,13 +34,15 @@
             </div>
 
             <div class="card-body">
-                <form action="" method="">
+                <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
 
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Product Name</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="text" class="form-control" placeholder="Product Name" required />
+                                <input type="text" class="form-control" name="name" placeholder="Product Name"
+                                    required />
                             </div>
                         </div>
                     </div>
@@ -50,7 +51,7 @@
                         <label class="col-sm-2 col-form-label">Image</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="file" class="form-control" required />
+                                <input type="file" class="form-control" name="image" required />
                             </div>
                         </div>
                     </div>
@@ -58,29 +59,29 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Category</label>
                         <div class="col-sm-10">
-                            <select class="form-select" id="">
-                                <option selected="" disabled>Select Category</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <select class="" name="category_id" placeholder="Select Category" required>
+                                {{-- <option selected="" disabled>Select Category</option> --}}
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">Company</label>
+                        <label class="col-sm-2 col-form-label">Producer</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="text" class="form-control" placeholder="Company" required />
+                                <input type="text" class="form-control" name="producer" placeholder="Producer" required />
                             </div>
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">Quantity</label>
+                        <label class="col-sm-2 col-form-label">Stock</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="number" class="form-control" placeholder="Quantity" required />
+                                <input type="number" class="form-control" name="stock" placeholder="Stock" required />
                             </div>
                         </div>
                     </div>
@@ -89,7 +90,7 @@
                         <label class="col-sm-2 col-form-label">Code</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="number" class="form-control" placeholder="Code" required />
+                                <input type="number" class="form-control" name="code" placeholder="Code" required />
                             </div>
                         </div>
                     </div>
@@ -98,7 +99,7 @@
                         <label class="col-sm-2 col-form-label">Price</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="number" class="form-control" placeholder="Price" required />
+                                <input type="number" class="form-control" name="price" placeholder="Price" required />
                                 <span class="input-group-text">L.E</span>
                             </div>
                         </div>
@@ -111,7 +112,7 @@
                         <div class="col-sm-10">
                             <button type="submit" class="btn btn-primary">Add</button>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <button type="button" class="btn btn-secondary">Cancel</button>
+                            <a class="btn btn-secondary" href="{{ route('products.index') }}">Cancel</a>
                         </div>
                     </div>
 
@@ -121,4 +122,14 @@
         </div>
     </div>
     <!--/ Form -->
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('select').selectize({
+                sortField: 'text'
+            });
+        });
+    </script>
 @endsection

@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/core.css') }}" class="template-customizer-core-css" />
     <link rel="stylesheet" href="{{ asset('assets/css/theme-default.css') }}" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/selectize.css') }}" />
 
     <!-- Navbar - Scrollbar -->
     <link rel="stylesheet" href="{{ asset('assets/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
@@ -45,7 +46,7 @@
 
                 <!-- Logo -->
                 <div class="app-brand demo">
-                    <a href="{{ url('/') }}" class="app-brand-link">
+                    <a href="{{ route('dashboard') }}" class="app-brand-link">
                         <span class="app-brand-logo demo">
                             <img src="{{ asset('assets/images/orango mini logo.png') }}">
                         </span>
@@ -65,25 +66,24 @@
 
                     <!-- Dashboard -->
                     <li class="menu-item {{ Request::is('/') ? 'active' : '' }}">
-                        <a href="{{ url('/') }}" class="menu-link">
+                        <a href="{{ route('dashboard') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">Dashboard</div>
                         </a>
                     </li>
 
                     <!-- Categories -->
-                    {{-- <li class="menu-item {{ Request::is('categories') || Request::is('categories/*') ? 'active' : '' }}"> --}}
-                    <li
-                        class="menu-item {{ Request::is('categories') || Request::is('add_category') || Request::is('edit_category') || Request::is('delete_category') ? 'active' : '' }}">
-                        <a href="{{ url('/categories') }}" class="menu-link">
+                    {{-- <li class="menu-item {{ Request::is('categories') || Request::is('add_category') || Request::is('edit_category') || Request::is('delete_category') ? 'active' : '' }}"> --}}
+                    <li class="menu-item {{ Request::is('categories') || Request::is('categories/*') ? 'active' : '' }}">
+                        <a href="{{ route('categories.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-category"></i>
                             <div data-i18n="Analytics">Categories</div>
                         </a>
                     </li>
 
                     <!-- Products -->
-                    <li
-                        class="menu-item  {{ Request::is('products') || Request::is('add_product') || Request::is('edit_product') || Request::is('delete_product') ? 'active' : '' }}">
+                    {{-- <li class="menu-item  {{ Request::is('products') || Request::is('add_product') || Request::is('edit_product') || Request::is('delete_product') ? 'active' : '' }}"> --}}
+                    <li class="menu-item  {{ Request::is('products') || Request::is('products/*') ? 'active' : '' }}">
                         <a href="{{ url('/products') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-package"></i>
                             <div data-i18n="Analytics">Products</div>
@@ -91,8 +91,8 @@
                     </li>
 
                     <!-- Offers -->
-                    <li
-                        class="menu-item {{ Request::is('offers') || Request::is('add_offer') || Request::is('edit_offer') || Request::is('delete_offer') ? 'active' : '' }}">
+                    {{-- <li class="menu-item {{ Request::is('offers') || Request::is('add_offer') || Request::is('edit_offer') || Request::is('delete_offer') ? 'active' : '' }}"> --}}
+                    <li class="menu-item {{ Request::is('offers') || Request::is('offers/*') ? 'active' : '' }}">
                         <a href="{{ url('/offers') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bxs-offer"></i>
                             <div data-i18n="Analytics">Offers</div>
@@ -163,7 +163,8 @@
                     </li>
 
                     <!-- Contact -->
-                    <li class="menu-item {{ Request::is('contact') || Request::is('delete_contact') ? 'active' : '' }}">
+                    <li
+                        class="menu-item {{ Request::is('contact') || Request::is('delete_contact') ? 'active' : '' }}">
                         <a href="{{ url('/contact') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-headphone"></i>
                             <div data-i18n="Analytics">Contact</div>
@@ -311,6 +312,9 @@
 
 
     <!-- Core JS -->
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/js/selectize.min.js') }}"></script>
+    
     <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
     <script src="{{ asset('assets/libs/apex-charts/apexcharts.js') }}"></script>
     <script src="{{ asset('assets/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>

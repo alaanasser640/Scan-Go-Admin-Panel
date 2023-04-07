@@ -6,9 +6,9 @@
 
 @section('search_bar')
     <!-- Search -->
-    <div class="table-search d-flex align-items-center">
-        <i class="bx bx-search fs-4 lh-0"></i>
-        <input type="text" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search..." />
+    <div class="table-search-disabled d-flex align-items-center">
+        <i class="bx bx-search fs-4 lh-0"></i> 
+        <input type="text" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search..." disabled/>
     </div>
     <!-- /Search -->
 @endsection
@@ -25,7 +25,7 @@
                     <div>
                         <h4 class="fw-bold py-3 mb-4">
                             <i class="icon-header bg-warning bx bx-category"></i>
-                            <a class="text-muted fw-normal" href="{{ url('/categories') }}">&nbsp;Categories /</a>
+                            <a class="text-muted fw-normal" href="{{ route('categories.index') }}">&nbsp;Categories /</a>
                             Add New Category
                         </h4>
                     </div>
@@ -35,13 +35,23 @@
             </div>
 
             <div class="card-body">
-                <form action="" method="">
+                <form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
 
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Category Name</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="text" class="form-control" placeholder="Category Name" required />
+                                <input type="text" name="name" class="form-control" placeholder="Category Name" required />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label">Image</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <input type="file" name="image" class="form-control" required />
                             </div>
                         </div>
                     </div>
@@ -50,7 +60,7 @@
                         <label class="col-sm-2 col-form-label">No. of types</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="number" class="form-control" placeholder="No. of types" required />
+                                <input type="number" name="num_of_types" class="form-control" placeholder="No. of types" required />
                             </div>
                         </div>
                     </div>
@@ -59,32 +69,20 @@
                         <label class="col-sm-2 col-form-label">Location</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="text" class="form-control" placeholder="Location" required />
+                                <input type="text" name="location" class="form-control" placeholder="Location" required />
                             </div>
                         </div>
                     </div>
-
-
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">Image</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <input type="file" class="form-control" required />
-                            </div>
-                        </div>
-                    </div>
-
-
+                    
                     <br><br>
                     <div class="row justify-content-end">
                         <div class="col-sm-10">
                             <button type="submit" class="btn btn-primary">Add</button>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <button type="button" class="btn btn-secondary">Cancel</button>
+                            <a class="btn btn-secondary" href="{{ route('categories.index') }}">Cancel</a>
+
                         </div>
                     </div>
-
-
                 </form>
             </div>
         </div>

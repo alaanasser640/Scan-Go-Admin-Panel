@@ -2,85 +2,145 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCategoryRequest;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
+
 class CategoryController extends Controller
 {
-    public function index()
+    //categories table page
+    public function index(Request $request)
     {
-        $categories = Category::all();
+        //$categories = Category::all();
+
+        //search function
+        $keyword = $request->get('search');
+        if (!empty($keyword)) {
+            $categories = Category::where('name', 'like', "%$keyword%")
+                ->orWhere('num_of_types', 'like', "%$keyword%")
+                ->orWhere('location', 'like', "%$keyword%")
+                ->latest()->paginate();
+        } else {
+            $categories = Category::latest()->paginate();
+        }
         return view('pages.admin-panel.categories.categories', [
-            'categories' =>$categories]);
+            'categories' => $categories
+        ]);
     }
 
+    //add new category page
+    public function create()
+    {
+        return view('pages.admin-panel.categories.add_category');
+    }
+
+    //edit categoty page
+    public function edit($id)
+    {
+        $category = Category::findOrFail($id);
+        return view('pages.admin-panel.categories.edit_category', [
+            'category' => $category
+        ]);
+    }
+
+    //delete category page
+    public function show($id)
+    {
+        $category = Category::findOrFail($id);
+        return view('pages.admin-panel.categories.delete_category', [
+            'category' => $category
+        ]);
+    }
+
+    //display categories from database function
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|unique:categories|max:255',
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255|unique:categories,name',
+            'image' => 'required|mimes:jpeg,png,jpg|max:2048',
             'num_of_types' => 'required|integer',
             'location' => 'required|min:5',
-            'image' => 'required|mimes:jpeg,png,jpg,jfif|max:2048',
         ]);
-    
-        $imageName = time().'.'.$request->image->extension();  
-        
-        $request->image->move(public_path('images'), $imageName);
-
-        Category::insert([
-            'name'=>$request->name,
-            'num_of_types'=>$request->num_of_types,
-            'location'=>$request->location,
-            'image' => $imageName,
-        ] );
-        return redirect('/categories')->with('message', 'Category added successfully');
-    }
-    
-    public function update(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|max:255',
-            'num_of_types' => ['required', 'integer'],
-            'location' => 'required|min:5'
-        ]);
-
-        $category = Category::findOrFail($request->category_id);
-        if($request->image)
-        { 
-            $request->validate([
-            'image' => 'required|mimes:jpeg,png,jpg|max:2048',
-            ]);
-           
-            $imageName = time().'.'.$request->image->extension();  
-        
-            $request->image->move(public_path('images'), $imageName);
-            $category->image = $imageName;
+        if ($validator->fails()) {
+            return redirect()->route('products.index')->withErrors($validator->errors());
         }
+
+        $file_name = time() . '.' . request()->image->getClientOriginalExtension();
+        request()->image->move(public_path('images'), $file_name);
+
+        $category = new Category();
         $category->name = $request->name;
+        $category->image = $file_name;
         $category->num_of_types = $request->num_of_types;
         $category->location = $request->location;
 
         $category->save();
 
-        return redirect('/categories')->with('message', 'Category updated successfully');
+        return redirect()->route('categories.index')->with('message', 'Category has added successfully');
     }
 
-    public function destroy(Request $request)
+    //edit category in database function
+    public function update(Request $request, Category $category)
     {
-        $delete_category = Category::findOrFail($request->deleted_category_id);
-        $delete_category->delete();
-        return redirect('/categories')->with('message', 'Category deleted successfully');
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'image' => 'required|mimes:jpeg,png,jpg|max:2048',
+            'num_of_types' => 'required|integer',
+            'location' => 'required|min:5',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->route('products.index')->withErrors($validator->errors());
+        }
+
+        $file_name = $request->hidden_image;
+
+        if ($request->image != ' ') {
+            $file_name = time() . '.' . request()->image->getClientOriginalExtension();
+            request()->image->move(public_path('images'), $file_name);
+        }
+
+        $category = Category::findOrFail($request->hidden_id);
+
+        $category->name = $request->name;
+        $category->image = $file_name;
+        $category->num_of_types = $request->num_of_types;
+        $category->location = $request->location;
+
+        $category->update();
+
+        return redirect()->route('categories.index')->with('message', 'Category has updated successfully');
     }
 
-    public function search(Request $request)
+    //delete category from database function
+    public function destroy($id)
     {
-        
-        $categories = Category::query()
-        ->where('name', 'LIKE', "%{$request->name}%") 
-        ->get();
-    
-        return view('pages.admin-panel.categories.categories', [
-                'categories' =>$categories]);
+        // $category = Category::withCount('products')->findOrFail($id);   
+        // if($category->products->count() > 0) {
+        //     return redirect()->route('categories.show', $category->id)->with('error_message', 'Category cannot be deleted, it has products.');
+        // }
+        $category = Category::findOrFail($id);
+
+        $image_path = public_path() . "/images/";
+        $image = $image_path . $category->image;
+        if (file_exists($image)) {
+            unlink($image);
+        }
+
+        $category->delete();
+        return redirect()->route('categories.index')->with('message', 'Category has deleted successfully');
     }
+
+    //search category function
+    // public function search(Request $request)
+    // {
+
+    //     $categories = Category::query()
+    //         ->where('name', 'LIKE', "%{$request->name}%")
+    //         ->get();
+
+    //     return view('pages.admin-panel.categories.categories', [
+    //         'categories' => $categories
+    //     ]);
+    // }
 }

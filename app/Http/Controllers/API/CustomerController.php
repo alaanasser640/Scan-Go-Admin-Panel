@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Mail;
 class CustomerController extends Controller
 {
     use GeneralTrait;
+    // retreive customer points
     public function customerPoints($id)
     {
         $points = DB::table('customers')
@@ -25,21 +26,30 @@ class CustomerController extends Controller
         return $this->returnData("points", $customer_points, "customer points", 201);
     }
 
+    // delete related account 
+    // no validation كمليها
     public function deleteRelatedAccount(Request $request)
     {
-        $delete_account = RelatedAccounts::findOrFail($request->id);
-        $delete_account->delete();
+        DB::table('related_accounts')
+            ->where('parent_id', '=', $request->parent_id)
+            ->where('child_id', '=', $request->child_id)->delete();
+
         return $this->returnSuccessMessage("the account has been deleted successfully", 201);
     }
+    // all related accounts
     public function relatedAccounts($id) // customer id
     {
         $accounts = DB::table('customers as c')
-            ->join('related_accounts as r', 'r.customer_id', '=', 'c.id')
+            ->join('related_accounts as r', 'r.child_id', '=', 'c.id')
             ->select('c.user_name', 'c.email', 'c.phone_number')
-            ->where('r.customer_id', '=', $id)
+            ->where('r.parent_id', '=', $id)
             ->get();
+
+            
         return $this->returnData("accounts", $accounts, "customer related accounts", 201);
     }
+
+    // add related account (not completed yet )
     public function addRelatedAccount(Request $request)
     {
         $request->validate([

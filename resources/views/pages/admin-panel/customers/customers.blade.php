@@ -5,6 +5,13 @@
 @endsection
 
 @section('search_bar')
+
+@if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible">
+            {{ session()->get('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <!-- Search -->
     <form action="" method="GET" accept-charset="UTF-8" role="search" style="width:80%;">
         <div class="table-search d-flex align-items-center">
@@ -14,6 +21,7 @@
         </div>
     </form>
     <!-- /Search -->
+
 @endsection
 
 @section('content')
@@ -46,107 +54,41 @@
                             <th> Username </th>
                             <th> Phone </th>
                             <th> Email </th>
-                            <th> Credit Card </th>
-                            <th> Token </th>
-                            <th> Last Login </th>
                             <th> Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                    <?php $id = 0; ?>
                         <tr>
-                            <th scope="row">1</th>
+                        @foreach ($customers as $customer)
+                            <th scope="row">{{{$id+=1}}}</th>
+                            
                             <td>
-                                <img src="{{ asset('assets/images/avatars/5.png') }}" alt="image" />
+                            <img src="images/{{$customer->image}}" class="img-category" alt="image" />
                             </td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
+                            <td>{{$customer->user_name}}</td>
+                            <td>{{$customer->phone_number}}</td>
+                            <td>{{$customer->email}}</td>
+
+
                             <td>
                                 {{-- <a href="{{ url('/edit_customer') }}" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Edit">
                                 <i class="bx bxs-edit-alt text-info"></i>
                             </a>
                             &nbsp;&nbsp; --}}
-                                <a href="{{ url('/delete_customer') }}" data-bs-toggle="tooltip" data-bs-offset="0,4"
+                                <a href="{{ url('/delete_customer', $customer->id) }}" data-bs-toggle="tooltip" data-bs-offset="0,4"
                                     data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Delete">
                                     <i class="bx bx-trash text-danger"></i>
                                 </a>
 
                             </td>
                         </tr>
+                        @endforeach
 
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>
-                                <img src="{{ asset('assets/images/avatars/5.png') }}" alt="image" />
-                            </td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>
-                                {{-- <a href="{{ url('/edit_customer') }}" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Edit">
-                                <i class="bx bxs-edit-alt text-info"></i>
-                            </a>
-                            &nbsp;&nbsp; --}}
-                                <a href="{{ url('/delete_customer') }}" data-bs-toggle="tooltip" data-bs-offset="0,4"
-                                    data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Delete">
-                                    <i class="bx bx-trash text-danger"></i>
-                                </a>
+                       
 
-                            </td>
-                        </tr>
 
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>
-                                <img src="{{ asset('assets/images/avatars/5.png') }}" alt="image" />
-                            </td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>
-                                {{-- <a href="{{ url('/edit_customer') }}" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Edit">
-                                <i class="bx bxs-edit-alt text-info"></i>
-                            </a>
-                            &nbsp;&nbsp; --}}
-                                <a href="{{ url('/delete_customer') }}" data-bs-toggle="tooltip" data-bs-offset="0,4"
-                                    data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Delete">
-                                    <i class="bx bx-trash text-danger"></i>
-                                </a>
-
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>
-                                <img src="{{ asset('assets/images/avatars/5.png') }}" alt="image" />
-                            </td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>
-                                {{-- <a href="{{ url('/edit_customer') }}" data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Edit">
-                                <i class="bx bxs-edit-alt text-info"></i>
-                            </a>
-                            &nbsp;&nbsp; --}}
-                                <a href="{{ url('/delete_customer') }}" data-bs-toggle="tooltip" data-bs-offset="0,4"
-                                    data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Delete">
-                                    <i class="bx bx-trash text-danger"></i>
-                                </a>
-                            </td>
-                        </tr>
+                        
 
                     </tbody>
                 </table>

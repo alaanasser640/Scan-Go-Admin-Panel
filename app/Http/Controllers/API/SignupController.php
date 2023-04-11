@@ -12,6 +12,7 @@ use App\Traits\GeneralTrait;
 
 class SignupController extends Controller
 {
+    public $link = 'https://648d-41-235-174-92.eu.ngrok.io';
     use GeneralTrait;
 
     public function login(Request $request)
@@ -31,6 +32,10 @@ class SignupController extends Controller
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             return $this->returnError("login error", "this user is not authenticated", 202);
+        }
+        if($user->image)
+        {
+            $user->image = $this->link . $user->image;
         }
 
         $token = $user->createToken('my-app-token')->plainTextToken;
@@ -80,8 +85,9 @@ class SignupController extends Controller
     public function logout(Request $request)
     {
         auth()->user()->tokens()->delete();
+        $token = $request->header('Authorization');
        
-        return $this->returnSuccessMessage("user logged out successfully", 200);
+       return $this->returnSuccessMessage($token, 200);
 
         
 
@@ -135,6 +141,8 @@ class SignupController extends Controller
         return $this->returnData("customer data", $customer, "profile updated successfully", 200);
 
     }
+    
+
 
     
 

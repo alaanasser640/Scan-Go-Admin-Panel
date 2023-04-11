@@ -3,32 +3,31 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Contact;
-use Illuminate\Http\Request;
+use App\Models\Feedback;
 use App\Traits\GeneralTrait;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator ;
 
-class ContactController extends Controller
+class FeedbackController extends Controller
 {
     use GeneralTrait;
-
+    use GeneralTrait;
+    // add contact
     public function Add(Request $request)
     {
         $validator = Validator::make($request->all(), [
 
-            'customer_name' => 'required',
-            'customer_email' => 'required|email',
+            'customer_id' => 'required',
             'message' => 'required',
-            'date' => 'required',
-            'time' => 'required'
+           
         ]);
      
         if ($validator->fails()) {
             return $this->returnError("validation errors", $validator->errors(), 202);  
         }
+        
 
-       Contact::create($request->all());
+       Feedback::create($request->all());
        return $this->returnSuccessMessage("message sent successfully", 200);
     }
-
 }

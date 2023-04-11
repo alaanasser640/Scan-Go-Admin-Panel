@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Receipt extends Model
 {
     use HasFactory;
+    protected $fillable = ['customer_id', 'receipt_number', 'total_price','total_quantity', 'date', 'time'];
     public function customers()
     {
         return $this->belongsTo(Customer::class, 'customer_id');

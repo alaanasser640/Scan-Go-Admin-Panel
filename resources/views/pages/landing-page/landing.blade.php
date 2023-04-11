@@ -32,6 +32,11 @@
     <script src="{{ asset('assets/js/helpers.js') }}"></script>
 
 </head>
+<!-- @if(session()->has('success'))
+    <div class="alert alert-success">
+        {{ session()->get('success') }}
+    </div>
+@endif -->
 
 <body style="font-family: product-sans;">
     <div class="layout-wrapper layout-content-navbar">

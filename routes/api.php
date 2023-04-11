@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\API\CategoryController;
-use App\Http\Controllers\API\ContactController;
 use App\Http\Controllers\API\CustomerController;
+use App\Http\Controllers\API\FeedbackController;
 use App\Http\Controllers\API\NoteController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\ProductController;
@@ -29,9 +29,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::post('/logout', [SignupController::class, 'logout']);
 
+
 });
 //products
-Route::get('/products',[ProductController::class,'products']);
+Route::get('/products/{id}',[ProductController::class,'products']);
 Route::get('/products/offers',[ProductController::class,'offers']);
 Route::post('/products/insertFavorite',[ProductController::class,'insertFavoriteProduct']);
 Route::post('/products/deleteFavorite',[ProductController::class,'deleteFavoriteProduct']);
@@ -42,6 +43,8 @@ Route::get('/categories',[CategoryController::class,'categories']);
 Route::get('/categoryProducts/{id}',[CategoryController::class,'categoryProducts']);
 // receipts
 Route::get('/customerReceipts/{id}',[ ReceiptController::class, 'allReceipts']);
+Route::get('/receiptItems/{id}',[ ReceiptController::class, 'receiptItems']);
+Route::post('/receipts/add',[ ReceiptController::class, 'addReceipt']);
 //registeration 
 Route::post('/register', [SignupController::class, 'register']);
 Route::post('/login', [SignupController::class, 'login']);
@@ -55,7 +58,7 @@ Route::post('/notes/insert',[NoteController::class,'insertNote']);
 Route::post('notes/deleteAll',[NoteController::class,'deleteAllNotes']);
 Route::post('/notes/update',[NoteController::class,'updateNote']);
 // contact 
-Route::post('/contacts/add',[ContactController::class,'Add']);
+Route::post('/contacts/add',[FeedbackController::class,'Add']);
 //points and accounts
 Route::get('/points/{id}', [CustomerController::class, 'customerPoints']);
 Route::post('/accounts/delete', [CustomerController::class, 'deleteRelatedAccount']);

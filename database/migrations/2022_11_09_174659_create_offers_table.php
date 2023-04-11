@@ -18,9 +18,6 @@ return new class extends Migration
             $table->integer('value');
             $table->date('started_at');
             $table->date('ended_at');
-            $table->unsignedBigInteger('product_id')->nullable();
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate('cascade');
-            
             $table->timestamps();
         });
     }
@@ -32,9 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('offers', function (Blueprint $table) {
-            $table->dropForeign('product_id');
-        });
         Schema::dropIfExists('offers');
     }
 };

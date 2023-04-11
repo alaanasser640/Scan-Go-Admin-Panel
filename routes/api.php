@@ -44,6 +44,7 @@ Route::get('/categoryProducts/{id}',[CategoryController::class,'categoryProducts
 // receipts
 Route::get('/customerReceipts/{id}',[ ReceiptController::class, 'allReceipts']);
 Route::get('/receiptItems/{id}',[ ReceiptController::class, 'receiptItems']);
+Route::post('/receipts/add',[ ReceiptController::class, 'addReceipt']);
 //registeration 
 Route::post('/register', [SignupController::class, 'register']);
 Route::post('/login', [SignupController::class, 'login']);

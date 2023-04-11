@@ -261,7 +261,7 @@
 
                             <li data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom"
                                 data-bs-html="true" data-bs-original-title="Log Out">
-                                <a class="" href="{{ url('/landing_page') }}">
+                                <a class="" href="{{ url('/sign-out') }}">
                                     <i class="bx bx-log-out-circle fs-4 navbar-icon"></i>
                                 </a>
                             </li>

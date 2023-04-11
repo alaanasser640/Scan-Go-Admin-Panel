@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('related_accounts', function (Blueprint $table) {
+        Schema::table('feedback', function (Blueprint $table) {
             $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('customers');
         });
@@ -26,8 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('related_accounts', function (Blueprint $table) {
-           
+        Schema::table('feedback', function (Blueprint $table) {
+            //
         });
     }
 };

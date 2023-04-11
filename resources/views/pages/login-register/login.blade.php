@@ -1,8 +1,26 @@
 @extends('pages.login-register.layout_2')
 
+    
 @section('title')
     Login
+
 @endsection
+@if ($errors->any())
+        <div class="alert alert-danger alert-dismissible">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    @if(session()->has('error'))
+    <div class="alert alert-danger">
+        {{ session()->get('error') }}
+    </div>
+@endif
 
 @section('content')
     <div class="col-md-9">
@@ -31,13 +49,13 @@
 
                         <br>
                         {{-- Form --}}
-                        <form action="" method="">
-
+                        <form action="{{route('login.custom')}}" method="post">
+@csrf
                             <div class="mb-3">
                                 <div class="col-sm-11">
                                     <div class="input-group input-group-merge">
                                         <span class="input-group-text"><i class="bx bx-envelope"></i></span>
-                                        <input type="email" class="form-control" placeholder="Email" required />
+                                        <input type="email" class="form-control" placeholder="Email"  name="email" />
                                     </div>
                                 </div>
                             </div>
@@ -46,7 +64,7 @@
                                 <div class="col-sm-11">
                                     <div class="input-group input-group-merge">
                                         <span class="input-group-text"><i class="bx bx-lock"></i></span>
-                                        <input type="password" class="form-control" placeholder="Password" required />
+                                        <input type="password" class="form-control" placeholder="Password"  name="password"/>
                                         <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                     </div>
                                 </div>

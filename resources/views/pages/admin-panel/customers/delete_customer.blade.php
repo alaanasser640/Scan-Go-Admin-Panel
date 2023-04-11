@@ -35,31 +35,33 @@
             </div>
 
             <div class="card-body">
-                <form action="" method="">
+            <form action="{{ route('customers.destroy',$customer->id) }}" method="POST">
 
+            @csrf
+                                @method('POST')
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Username </label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="text" class="form-control" value="Username" disabled />
+                                <input type="text" class="form-control" value="{{$customer->user_name}}" disabled />
                             </div>
                         </div>
                     </div>
 
-                    <div class="row mb-3">
+                    <!-- <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Image</label>
                         <div class="col-sm-10">
                             <div class="input-group">
                                 <input type="text" class="form-control" value="IMG-123456" disabled />
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Phone</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="text" class="form-control" value="Phone" disabled />
+                                <input type="text" class="form-control" value="{{$customer->phone_number}}" disabled />
                             </div>
                         </div>
                     </div>
@@ -68,26 +70,30 @@
                         <label class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="text" class="form-control" value="Email" disabled />
+                                <input type="text" class="form-control" value="{{$customer->email}}" disabled />
                             </div>
                         </div>
                     </div>
 
-                    <div class="row mb-3">
+                    <!-- <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Credit Card</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                                 <input type="text" class="form-control" value="Credit Card" disabled />
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <br><br>
                     <div class="row justify-content-end">
                         <div class="col-sm-10">
+                        
+                      
+                                <input type="hidden" value="$customer->id">
                             <button type="submit" class="btn btn-danger">Delete</button>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <a class="btn btn-secondary" href="{{ url('/customers') }}">Cancel</a>
+                       
                         </div>
                     </div>
 

@@ -13,13 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('feedback', function (Blueprint $table) {
-            $table->id();
-            $table->text('message');
-            $table->boolean('status')->nullable();
-            $table->timestamps();
-            ;
-            
+        Schema::table('related_accounts', function (Blueprint $table) {
+            $table->unsignedBigInteger('child_id');
+            $table->foreign('child_id')->references('id')->on('customers');
         });
     }
 
@@ -30,6 +26,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contacts');
+        Schema::table('related_accounts', function (Blueprint $table) {
+            //
+        });
     }
 };

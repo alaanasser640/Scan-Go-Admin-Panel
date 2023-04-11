@@ -54,8 +54,11 @@
                             <h4 class="card-title text-primary">Welcome Back,
                                 <span class="fw-bold text-secondary">Sara!</span> 🎉
                             </h4>
-                            <p class="mb-4"><i class="bx bx-calendar"></i> &nbsp; Monday, 30 Mar
-                                2023</p>
+                            <p class="mb-4">
+                                <i class="bx bx-calendar"></i> 
+                                <span class="">Last update at:</span>
+                                <span class="text-muted">&nbsp;30/4/2023 | 08:30 PM</span>
+                            </p>
                             <a href="{{ url('/profile') }}" class="btn btn-sm btn-outline-warning"
                                 style="width:35%;font-size: 0.9rem;">View Profile</a>
                         </div>
@@ -86,7 +89,7 @@
                                 </div>
                             </div>
                             <span class="fw-semibold d-block mb-1">Categories</span>
-                            <h3 class="card-title mb-2">{{ $categories}}</h3>
+                            <h3 class="card-title mb-2">{{ $categories }}</h3>
                             <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +72.80%</small>
                         </div>
                     </div>
@@ -102,7 +105,7 @@
                                 </div>
                             </div>
                             <span class="fw-semibold d-block mb-1">Products</span>
-                            <h3 class="card-title text-nowrap mb-1">{{ $products}}</h3>
+                            <h3 class="card-title text-nowrap mb-1">{{ $products }}</h3>
                             <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +28.42%</small>
                         </div>
                     </div>
@@ -118,7 +121,7 @@
                                 </div>
                             </div>
                             <span class="d-block mb-1">Offers</span>
-                            <h3 class="card-title text-nowrap mb-2">{{ $offers}}</h3>
+                            <h3 class="card-title text-nowrap mb-2">{{ $offers }}</h3>
                             <small class="text-danger fw-semibold"><i class="bx bx-down-arrow-alt"></i> -14.82%</small>
                         </div>
                     </div>

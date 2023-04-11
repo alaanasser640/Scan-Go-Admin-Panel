@@ -63,7 +63,7 @@ class CategoryController extends Controller
             'location' => 'required|min:5',
         ]);
         if ($validator->fails()) {
-            return redirect()->route('products.index')->withErrors($validator->errors());
+            return redirect()->route('categories.index')->withErrors($validator->errors());
         }
 
         $file_name = time() . '.' . request()->image->getClientOriginalExtension();
@@ -90,7 +90,7 @@ class CategoryController extends Controller
             'location' => 'required|min:5',
         ]);
         if ($validator->fails()) {
-            return redirect()->route('products.index')->withErrors($validator->errors());
+            return redirect()->route('categories.index')->withErrors($validator->errors());
         }
 
         $file_name = $request->hidden_image;

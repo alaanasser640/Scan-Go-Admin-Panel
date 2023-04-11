@@ -41,7 +41,11 @@
 
 
     <!-- Table -->
-    <div class="card p-4">
+    <div class="card px-4 pb-4">
+        <a class="nav-link text-sm-end py-3" href="">
+            <i class="bx bx-trash"></i>
+            Mark all as read
+        </a>
         <div class="table-responsive text-nowrap">
             <table class="table">
                 <thead>

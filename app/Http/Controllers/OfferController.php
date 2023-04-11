@@ -100,7 +100,7 @@ class OfferController extends Controller
             'ended_at' => 'required|date|after_or_equal:started_at'
         ]);
         if ($validator->fails()) {
-            return redirect()->route('offers.index')->withErrors($validator->errors());
+            return redirect()->back()->withErrors($validator->errors());
         }
 
         Offer::create($request->all());
@@ -117,7 +117,7 @@ class OfferController extends Controller
             'ended_at' => 'required|date|after_or_equal:started_at'
         ]);
         if ($validator->fails()) {
-            return redirect()->route('offers.index')->withErrors($validator->errors());
+            return redirect()->back()->withErrors($validator->errors());
         }
 
         $offer = Offer::findOrFail($request->offer_id);
@@ -143,7 +143,7 @@ class OfferController extends Controller
     public function expired()
     {
         Artisan::call('offer:expired');
-        return redirect()->route('offers.index')->with('message', 'Offer has expired!!');
+        return redirect()->route('offers.index')->with('note', 'Offer has expired!!');
     }
     
 }

@@ -64,7 +64,7 @@
                         <label class="col-sm-2 col-form-label">Image</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="file" class="form-control" name="image" required />
+                                <input type="file" class="form-control" name="image"  />
                                 <input type="hidden" class="form-control" name="hidden_image"
                                     value="{{ $product->image }}" />
                             </div>

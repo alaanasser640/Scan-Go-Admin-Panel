@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\AdminController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -29,6 +30,10 @@ Route::resource('products', ProductController::class);
 Route::resource('offers', OfferController::class);
 
 
+//Admin
+Route::resource('admins', AdminController::class);
+
+
 
 // Cutomers
 Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
@@ -45,18 +50,18 @@ Route::post('/delete_customer/{id}', [CustomerController::class, 'destroy'])->na
 
 
 // Admins
-Route::get('/admins', function () {
-    return view('pages.admin-panel.admins.admins');
-});
-Route::get('/add_admin', function () {
-    return view('pages.admin-panel.admins.add_admin');
-});
-Route::get('/edit_admin', function () {
-    return view('pages.admin-panel.admins.edit_admin');
-});
-Route::get('/delete_admin', function () {
-    return view('pages.admin-panel.admins.delete_admin');
-});
+// Route::get('/admins', function () {
+//     return view('pages.admin-panel.admins.admins');
+// });
+// Route::get('/add_admin', function () {
+//     return view('pages.admin-panel.admins.add_admin');
+// });
+// Route::get('/edit_admin', function () {
+//     return view('pages.admin-panel.admins.edit_admin');
+// });
+// Route::get('/delete_admin', function () {
+//     return view('pages.admin-panel.admins.delete_admin');
+// });
 
 
 

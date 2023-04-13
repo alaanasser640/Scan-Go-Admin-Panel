@@ -35,13 +35,24 @@
             </div>
 
             <div class="card-body">
-                <form action="" method="">
-
+                <form action="{{ route('admins.destroy', $admin->id) }}" method="POST"
+                    enctype="multipart/form-data">
+                    @csrf
+                    @method('DELETE')
+                    <div class="row mb-3 hidden">
+                        <label class="col-sm-2 col-form-label">Admin ID</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                                <input type="text" class="form-control" name="admin_id" value="{{ $admin->id }}"
+                                    disabled />
+                            </div>
+                        </div>
+                    </div>
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Username </label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="text" class="form-control" value="Username" disabled />
+                                <input type="text" class="form-control" value="{{ $admin->user_name }}"  disabled />
                             </div>
                         </div>
                     </div>
@@ -50,7 +61,7 @@
                         <label class="col-sm-2 col-form-label">Image</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="text" class="form-control" value="IMG-123456" disabled />
+                                <input type="text" class="form-control" value="{{ $admin->image }}" disabled />
                             </div>
                         </div>
                     </div>
@@ -59,7 +70,7 @@
                         <label class="col-sm-2 col-form-label">Phone</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="tel" class="form-control" value="Phone" disabled />
+                                <input type="tel" class="form-control" value="{{ $admin->phone_number }}" disabled />
                             </div>
                         </div>
                     </div>
@@ -68,7 +79,7 @@
                         <label class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="email" class="form-control" value="Email" disabled />
+                                <input type="email" class="form-control" value="{{ $admin->email }}" disabled />
                             </div>
                         </div>
                     </div>

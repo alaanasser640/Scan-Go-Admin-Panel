@@ -25,7 +25,7 @@
                     <div>
                         <h4 class="fw-bold py-3 mb-4">
                             <i class="icon-header bg-warning bx bxs-group"></i>
-                            <a class="text-muted fw-normal" href="{{ url('/admins') }}">&nbsp;Admins /</a>
+                            <a class="text-muted fw-normal" href="{{ route('admins.index') }}">&nbsp;Admins /</a>
                             Add New Admin
                         </h4>
                     </div>
@@ -35,13 +35,13 @@
             </div>
 
             <div class="card-body">
-                <form action="" method="">
-
+                <form action="{{ route('admins.store') }}" method="POST" enctype="multipart/form-data">
+    @csrf
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Username </label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="text" class="form-control" placeholder="Username" required />
+                                <input type="text" name="user_name" class="form-control" placeholder="Username" required />
                             </div>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                         <label class="col-sm-2 col-form-label">Image</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="file" class="form-control" required />
+                                <input type="file" class="form-control" required name="image" />
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                         <label class="col-sm-2 col-form-label">Phone</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="tel" class="form-control" placeholder="Phone" required />
+                                <input type="tel" class="form-control" name="phone_number" placeholder="Phone" required />
                             </div>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                         <label class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="text" class="form-control" placeholder="Email" required />
+                                <input type="text" class="form-control" name="email" placeholder="Email" required />
                             </div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                         <label class="col-sm-2 col-form-label">Password</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="password" class="form-control" placeholder="*******" required />
+                                <input type="password" name="password" class="form-control" placeholder="*******" required />
                                 <span class="input-group-text cursor-pointer" id="basic-default-password"><i class="bx bx-hide"></i></span>
                             </div>
                         </div>

@@ -6,7 +6,7 @@
 
 @section('search_bar')
     <!-- Search -->
-    <form action="" method="GET" accept-charset="UTF-8" role="search" style="width:80%;">
+    <form action="{{ route('admins.index') }}" method="GET" accept-charset="UTF-8" role="search" style="width:80%;">
         <div class="table-search d-flex align-items-center">
             <i class="bx bx-search fs-4 lh-0"></i>
             <input type="text" class="form-control border-0 shadow-none" name="search" value="{{ request('search') }}"
@@ -17,6 +17,33 @@
 @endsection
 
 @section('content')
+<!-- Validation errors alert -->
+@if ($errors->any())
+        <div class="alert alert-danger alert-dismissible">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    <!-- Error message alert -->
+    @if (session()->has('error_message'))
+        <div class="alert alert-danger alert-dismissible">
+            {{ session()->get('error_message') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    <!-- Message alert -->
+    @if (session()->has('message'))
+        <div class="alert alert-success alert-dismissible">
+            {{ session()->get('message') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <!-- Table -->
     <div class="card p-4">
         <div>
@@ -29,7 +56,7 @@
                     </h4>
                 </div>
                 <div class="py-3 mb-4">
-                    <a href="{{ url('/add_admin') }}" type="button" class="btn btn-primary">
+                    <a href="{{ route('admins.create') }}" type="button" class="btn btn-primary">
                         <i class="bx bx-plus"></i> &nbsp; Add New Admin
                     </a>
                 </div>
@@ -52,74 +79,32 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php $id = 0; ?>
                         <tr>
-                            <th scope="row">1</th>
+                        @foreach ($admins as $admin)
+                            <th scope="row">{{{$id+=1}}}</th>
                             <td>
-                                <img src="{{ asset('assets/images/avatars/5.png') }}" alt="image" />
+                                <img src="images/{{$admin->image}}" class="img-category" alt="image" />
                             </td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
+                            <td>{{{$admin->user_name}}}</td>
+                            <td>{{{$admin->phone}}}</td>
+                            <td>{{{$admin->email}}}</td>
+                            <td>{{{$admin->updated_at}}}</td>
                             <td>
-                                <a href="{{ url('/edit_admin') }}" data-bs-toggle="tooltip" data-bs-offset="0,4"
+                                <a href="{{ route('admins.edit', $admin->id) }}" data-bs-toggle="tooltip" data-bs-offset="0,4"
                                     data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Edit">
                                     <i class="bx bxs-edit-alt text-info"></i>
                                 </a>
                                 &nbsp;&nbsp;
-                                <a href="{{ url('/delete_admin') }}" data-bs-toggle="tooltip" data-bs-offset="0,4"
+                                <a href="{{ route('admins.show', $admin->id) }}" data-bs-toggle="tooltip" data-bs-offset="0,4"
                                     data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Delete">
                                     <i class="bx bx-trash text-danger"></i>
                                 </a>
 
                             </td>
                         </tr>
-
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>
-                                <img src="{{ asset('assets/images/avatars/5.png') }}" alt="image" />
-                            </td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>
-                                <a href="{{ url('/edit_admin') }}" data-bs-toggle="tooltip" data-bs-offset="0,4"
-                                    data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Edit">
-                                    <i class="bx bxs-edit-alt text-info"></i>
-                                </a>
-                                &nbsp;&nbsp;
-                                <a href="{{ url('/delete_admin') }}" data-bs-toggle="tooltip" data-bs-offset="0,4"
-                                    data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Delete">
-                                    <i class="bx bx-trash text-danger"></i>
-                                </a>
-
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>
-                                <img src="{{ asset('assets/images/avatars/5.png') }}" alt="image" />
-                            </td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>
-                                <a href="{{ url('/edit_admin') }}" data-bs-toggle="tooltip" data-bs-offset="0,4"
-                                    data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Edit">
-                                    <i class="bx bxs-edit-alt text-info"></i>
-                                </a>
-                                &nbsp;&nbsp;
-                                <a href="{{ url('/delete_admin') }}" data-bs-toggle="tooltip" data-bs-offset="0,4"
-                                    data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Delete">
-                                    <i class="bx bx-trash text-danger"></i>
-                                </a>
-
-                            </td>
-                        </tr>
+                        @endforeach
+                        
                     </tbody>
                 </table>
             </div>

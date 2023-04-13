@@ -35,13 +35,14 @@
             </div>
 
             <div class="card-body">
-                <form action="" method="">
-
+                <form action="{{ route('admins.update', $admin->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                    @method('PUT')
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Username </label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="text" class="form-control" placeholder="User Name" required />
+                                <input type="text" name="user_name" value="{{$admin->user_name}}" class="form-control" placeholder="User Name" required />
                             </div>
                         </div>
                     </div>
@@ -50,7 +51,8 @@
                         <label class="col-sm-2 col-form-label">Image</label>
                         <div class="col-sm-10">
                             <div class="input-group">
-                                <input type="file" class="form-control" required />
+                            <input type="file" class="form-control" name="image"  />
+                                <input type="hidden" class="form-control" name="hidden_image" value="{{$admin->image }}" />
                             </div>
                         </div>
                     </div>
@@ -59,7 +61,7 @@
                         <label class="col-sm-2 col-form-label">Phone</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="tel" class="form-control" placeholder="Phone" required />
+                                <input type="tel" name="phone_number" value="{{$admin->phone_number}}" class="form-control" placeholder="Phone" required />
                             </div>
                         </div>
                     </div>
@@ -68,20 +70,20 @@
                         <label class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="text" class="form-control" placeholder="Email" required />
+                                <input type="text" name="email" class="form-control" value="{{$admin->email}}" placeholder="Email" required />
                             </div>
                         </div>
                     </div>
 
-                    <div class="row mb-3">
+                    <!-- <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Password</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="password" class="form-control" placeholder="*******" required />
+                                <input type="password" name="password" value="" class="form-control" placeholder="*******" required />
                                 <span class="input-group-text cursor-pointer" id="basic-default-password"><i class="bx bx-hide"></i></span>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <br><br>
                     <div class="row justify-content-end">

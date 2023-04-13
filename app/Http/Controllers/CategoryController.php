@@ -12,7 +12,7 @@ class CategoryController extends Controller
     //categories table page
     public function index(Request $request)
     {
-        //$categories = Category::all();
+
 
         //search function
         $keyword = $request->get('search');
@@ -85,7 +85,7 @@ class CategoryController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
-            'image' => 'required|mimes:jpeg,png,jpg',
+            // 'image' => 'required|mimes:jpeg,png,jpg',
             'num_of_types' => 'required|integer',
             'location' => 'required|min:5',
         ]);
@@ -95,19 +95,28 @@ class CategoryController extends Controller
 
         $file_name = $request->hidden_image;
 
-        if ($request->image != ' ') {
+        if ($request->hasFile('image')) {
             $file_name = time() . '.' . request()->image->getClientOriginalExtension();
             request()->image->move(public_path('images'), $file_name);
         }
 
-        $category = Category::findOrFail($request->hidden_id);
+        // $category = Category::findOrFail($request->hidden_id);
 
-        $category->name = $request->name;
-        $category->image = $file_name;
-        $category->num_of_types = $request->num_of_types;
-        $category->location = $request->location;
+        Category::where('id', $request->hidden_id)
+            ->update([
+                "name" => $request->name,
+                "image" => $file_name,
+                "num_of_types" => $request->num_of_types,
+                "location" => $request->location,
+            ]);
 
-        $category->update();
+
+        // $category->name = $request->name;
+        // $category->image = $file_name;
+        // $category->num_of_types = $request->num_of_types;
+        // $category->location = $request->location;
+
+        // $category->update();
 
         return redirect()->route('categories.index')->with('message', 'Category has updated successfully');
     }

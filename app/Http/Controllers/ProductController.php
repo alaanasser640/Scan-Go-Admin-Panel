@@ -113,7 +113,7 @@ class ProductController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
-            'image' => 'required|mimes:jpeg,png,jpg',
+            // 'image' => 'required|mimes:jpeg,png,jpg',
             'category_id' => 'required',
             'stock' => 'required|integer',
             'code' => 'required',
@@ -125,22 +125,35 @@ class ProductController extends Controller
         }
 
         $file_name = $request->hidden_image;
-        if ($request->image != ' ') {
+        if ($request->hasFile('image')) {
             $file_name = time() . '.' . request()->image->getClientOriginalExtension();
             request()->image->move(public_path('images'), $file_name);
         }
 
-        $product = Product::findOrFail($request->hidden_id);
 
-        $product->name = $request->name;
-        $product->image = $file_name;
-        $product->stock = $request->stock;
-        $product->producer = $request->producer;
-        $product->code = $request->code;
-        $product->price = $request->price;
-        $product->category_id = $request->category_id;
+        Product::where('id', $request->hidden_id)
+            ->update([
+                "name" => $request->name,
+                "image" => $file_name,
+                "stock" => $request->stock,
+                "producer" => $request->producer,
+                "code" => $request->code,
+                "price" => $request->price,
+                "category_id" => $request->category_id,
 
-        $product->update();
+            ]);
+
+        // $product = Product::findOrFail($request->hidden_id);
+
+        // $product->name = $request->name;
+        // $product->image = $file_name;
+        // $product->stock = $request->stock;
+        // $product->producer = $request->producer;
+        // $product->code = $request->code;
+        // $product->price = $request->price;
+        // $product->category_id = $request->category_id;
+
+        // $product->update();
 
         return redirect()->route('products.index')->with('message', 'Product has updated successfully');
     }
@@ -172,5 +185,4 @@ class ProductController extends Controller
             'products' => $products, 'categories' => $categories
         ]);
     }
-
 }

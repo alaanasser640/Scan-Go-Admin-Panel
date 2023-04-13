@@ -56,7 +56,7 @@
                                 @foreach ($products as $product)
                                     @if ($offers->product_id == $product->id)
                                         <input type="text" class="form-control" name="product_id"
-                                            value="<?php echo $product->name; ?>" disabled />
+                                            value="{{ $product->name }}" disabled />
                                     @endif
                                 @endforeach
                             </div>

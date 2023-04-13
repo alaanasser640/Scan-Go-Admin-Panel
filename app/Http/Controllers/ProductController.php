@@ -80,7 +80,7 @@ class ProductController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255|unique:products,name',
-            'image' => 'required|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'required|mimes:jpeg,png,jpg',
             'category_id' => 'required',
             'stock' => 'required|integer',
             'code' => 'required',
@@ -88,7 +88,7 @@ class ProductController extends Controller
             'producer' => 'required',
         ]);
         if ($validator->fails()) {
-            return redirect()->route('products.index')->withErrors($validator->errors());
+            return redirect()->back()->withErrors($validator->errors());
         }
 
         $file_name = time() . '.' . request()->image->getClientOriginalExtension();
@@ -113,7 +113,7 @@ class ProductController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
-            'image' => 'required|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'required|mimes:jpeg,png,jpg',
             'category_id' => 'required',
             'stock' => 'required|integer',
             'code' => 'required',
@@ -121,7 +121,7 @@ class ProductController extends Controller
             'producer' => 'required',
         ]);
         if ($validator->fails()) {
-            return redirect()->route('products.index')->withErrors($validator->errors());
+            return redirect()->back()->withErrors($validator->errors());
         }
 
         $file_name = $request->hidden_image;

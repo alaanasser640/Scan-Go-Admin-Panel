@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\CustomerController;
@@ -27,6 +28,9 @@ Route::resource('products', ProductController::class);
 
 //Offers
 Route::resource('offers', OfferController::class);
+
+//Contact
+Route::resource('contacts', ContactController::class);
 
 
 
@@ -67,8 +71,6 @@ Route::get('/profile', function () {
 Route::get('/notification', function () {
     return view('pages.admin-panel.notification_profile.notification');
 });
-
-
 
 Route::get('/receipts', function () {
     return view('pages.admin-panel.receipts.receipts');

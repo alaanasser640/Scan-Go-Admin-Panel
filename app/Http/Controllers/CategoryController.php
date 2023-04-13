@@ -58,12 +58,12 @@ class CategoryController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255|unique:categories,name',
-            'image' => 'required|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'required|mimes:jpeg,png,jpg',
             'num_of_types' => 'required|integer',
             'location' => 'required|min:5',
         ]);
         if ($validator->fails()) {
-            return redirect()->route('categories.index')->withErrors($validator->errors());
+            return redirect()->back()->withErrors($validator->errors());
         }
 
         $file_name = time() . '.' . request()->image->getClientOriginalExtension();
@@ -85,12 +85,12 @@ class CategoryController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
-            'image' => 'required|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'required|mimes:jpeg,png,jpg',
             'num_of_types' => 'required|integer',
             'location' => 'required|min:5',
         ]);
         if ($validator->fails()) {
-            return redirect()->route('categories.index')->withErrors($validator->errors());
+            return redirect()->back()->withErrors($validator->errors());
         }
 
         $file_name = $request->hidden_image;

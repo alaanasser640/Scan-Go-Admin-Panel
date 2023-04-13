@@ -7,13 +7,41 @@
 @section('search_bar')
     <!-- Search -->
     <div class="table-search-disabled d-flex align-items-center">
-        <i class="bx bx-search fs-4 lh-0"></i> 
-        <input type="text" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search..." disabled/>
+        <i class="bx bx-search fs-4 lh-0"></i>
+        <input type="text" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search..."
+            disabled />
     </div>
     <!-- /Search -->
 @endsection
 
 @section('content')
+    <!-- Validation errors alert -->
+    @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    <!-- Error message alert -->
+    @if (session()->has('error_message'))
+        <div class="alert alert-danger alert-dismissible">
+            {{ session()->get('error_message') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    <!-- Message alert -->
+    @if (session()->has('message'))
+        <div class="alert alert-success alert-dismissible">
+            {{ session()->get('message') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <!-- Form -->
     <div class="col-xxl">
         <div class="card mb-4">
@@ -43,7 +71,8 @@
                         <label class="col-sm-2 col-form-label">Category ID</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="text" class="form-control" name="hidden_id" value="{{ $category->id }}" placeholder="Category ID" />
+                                <input type="text" class="form-control" name="hidden_id" value="{{ $category->id }}"
+                                    placeholder="Category ID" />
                             </div>
                         </div>
                     </div>
@@ -63,7 +92,8 @@
                         <div class="col-sm-10">
                             <div class="input-group">
                                 <input type="file" class="form-control" name="image" required />
-                                <input type="hidden" class="form-control" name="hidden_image" value="{{ $category->fileimage }}" />
+                                <input type="hidden" class="form-control" name="hidden_image"
+                                    value="{{ $category->fileimage }}" />
                             </div>
                         </div>
                     </div>
@@ -72,7 +102,8 @@
                         <label class="col-sm-2 col-form-label">No. of types</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="number" name="num_of_types" class="form-control" value="{{ $category->num_of_types }}"  placeholder="No. of types" required />
+                                <input type="number" name="num_of_types" class="form-control"
+                                    value="{{ $category->num_of_types }}" placeholder="No. of types" required />
                             </div>
                         </div>
                     </div>

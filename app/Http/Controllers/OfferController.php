@@ -23,7 +23,7 @@ class OfferController extends Controller
         $keyword = $request->get('search');
         if (!empty($keyword)) {
             $offers = Offer::join('products', 'products.id', '=', 'offers.product_id')
-                ->select('products.id', 'products.name', 'products.image', 'offers.id', 'offers.value', 'offers.started_at', 'offers.ended_at')
+                ->select('products.id', 'products.name', 'products.image', 'offers.*')
                 ->orWhere('products.name', 'like', "%$keyword%")
                 ->orWhere('value', 'like', "%$keyword%" . "%")
                 ->orWhere('started_at', 'like', "%$keyword%")
@@ -31,7 +31,7 @@ class OfferController extends Controller
                 ->paginate();
         } else {
             $offers = Offer::join('products', 'products.id', '=', 'offers.product_id')
-                ->select('products.id', 'products.name', 'products.image', 'offers.id', 'offers.value', 'offers.started_at', 'offers.ended_at')
+                ->select('products.id', 'products.name', 'products.image', 'offers.*')
                 ->paginate();
         }
         $products = Product::all();

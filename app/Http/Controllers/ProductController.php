@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Offer;
 use App\Models\Product;
+use App\Models\User;
+use App\Notifications\CreateProduct;
+use App\Notifications\UpdateProduct;
+use App\Notifications\DestroyProduct;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 
 
 class ProductController extends Controller
@@ -105,6 +109,12 @@ class ProductController extends Controller
 
         $product->save();
 
+        //notifications
+        $admins = User::where('id', '!=', auth()->user()->id)->get();  //get all admins exept who logined
+        $admin_id = auth()->user()->id;  //get the logined admin id
+        Notification::send($admins, new CreateProduct($product->id, $admin_id, $product->name));  //get creation info to notifications
+
+
         return redirect()->route('products.index')->with('message', 'Product has added successfully');
     }
 
@@ -155,6 +165,12 @@ class ProductController extends Controller
 
         // $product->update();
 
+        //notifications
+        $admins = User::where('id', '!=', auth()->user()->id)->get();  //get all admins exept who logined
+        $admin_id = auth()->user()->id;  //get the logined admin id
+        Notification::send($admins, new UpdateProduct($product->id, $admin_id, $product->name));  //get deletion info to notifications
+
+
         return redirect()->route('products.index')->with('message', 'Product has updated successfully');
     }
 
@@ -169,20 +185,26 @@ class ProductController extends Controller
             unlink($image);
         }
 
+        //notifications
+        $admins = User::where('id', '!=', auth()->user()->id)->get();  //get all admins exept who logined
+        $admin_id = auth()->user()->id;  //get the logined admin id
+        Notification::send($admins, new DestroyProduct($product->id, $admin_id, $product->name));  //get deletion info to notifications
+
+
         $product->delete();
         return redirect()->route('products.index')->with('message', 'Product has deleted successfully');
     }
 
     //search product
-    public function search(Request $request)
-    {
-        $categories = Category::all();
-        $products = Product::query()
-            ->where('name', 'LIKE', "%{$request->product}%")
-            ->get();
+    // public function search(Request $request)
+    // {
+    //     $categories = Category::all();
+    //     $products = Product::query()
+    //         ->where('name', 'LIKE', "%{$request->product}%")
+    //         ->get();
 
-        return view('pages.admin-panel.products.products', [
-            'products' => $products, 'categories' => $categories
-        ]);
-    }
+    //     return view('pages.admin-panel.products.products', [
+    //         'products' => $products, 'categories' => $categories
+    //     ]);
+    // }
 }

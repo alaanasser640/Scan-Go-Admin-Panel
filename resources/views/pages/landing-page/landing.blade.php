@@ -48,7 +48,7 @@
                     <div class="container-fluid">
                         <div class="collapse navbar-collapse justify-content-between">
 
-                            <div>
+                            <div class="logo">
                                 <a class="app-brand-link" href="{{ url('/landing_page') }}">
                                     <span class="app-brand-logo demo">
                                         <img src="{{ asset('assets/images/orango mini logo.png') }}">
@@ -62,25 +62,25 @@
                                 <span class="navbar-toggler-icon"></span>
                             </button>
 
-                            <div>
+                            <div class="nav-bar">
                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                     <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page"
+                                        <a class="nav-link active nav-a" aria-current="page" style="--i:1;"
                                         href="{{ url('/landing_page') }}">Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link">About</a>
+                                        <a class="nav-link nav-a" style="--i:2;">About</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link">Contact</a>
+                                        <a class="nav-link nav-a" style="--i:3;">Contact</a>
                                     </li>
                                 </ul>
                             </div>
 
                             <div>
                                 <form class="d-flex">
-                                    <a href="{{ url("/sign_up") }}" class="btn btn-outline-warning mx-2">Sign Up</a>
-                                    <a href="{{ url("/log_in") }}" class="btn btn-primary mx-2">Log In</a>
+                                    <a href="{{ url("/sign_up") }}" class="btn btn-outline-warning mx-2 nav-a" style="--i:4;">Sign Up</a>
+                                    <a href="{{ url("/log_in") }}" class="btn btn-primary mx-2 nav-a" style="--i:5;">Log In</a>
                                 </form>
                             </div>
 
@@ -96,15 +96,15 @@
                     <div class="row container-xxl flex-grow-1 container-p-y" style="align-self: center;">
                             
                             <div class="col-lg-6 d-flex flex-column justify-content-center">
-                                <h1>
+                                <h1 class="header">
                                     <span class="text-primary">OranGo</span> Admin Panel
                                 </h1>
 
-                                <p class="fs-4 mt-5">This is an OranGo Admin Panel where we can manage categories, 
+                                <p class="fs-4 mt-5 content-p1">This is an OranGo Admin Panel where we can manage categories, 
                                     products, customers, admins, receipts & carts.</p>
-                                <p class="fs-4">It is linked to a database and also to a mobile application of our project, where data is displayed, added, edited, and deleted.</p>
+                                <p class="fs-4 content-p2">It is linked to a database and also to a mobile application of our project, where data is displayed, added, edited, and deleted.</p>
 
-                                <div class="mt-5">
+                                <div class="mt-5 content-btn">
                                     <a href="{{ url("/log_in") }}" class="btn btn-outline-warning mx-2">
                                         Get Started <i class="bx bx-chevron-right"></i>
                                     </a>
@@ -112,7 +112,7 @@
                             </div>
 
                             <div class="col-lg-6 d-flex flex-column justify-content-center">
-                                <img src="{{ asset('assets/images/illustrations/landing-page.png') }}" class="img-fluid" alt="landing-page" style="place-self: center;">
+                                <img src="{{ asset('assets/images/illustrations/landing-page.png') }}" class="img-fluid landing-img" alt="landing-page" style="place-self: center;">
                             </div>
 
                     </div>
@@ -138,6 +138,10 @@
             </div>
         </div>
     </div>
+
+    <script>
+        
+    </script>
 </body>
 
 </html>

@@ -52,7 +52,7 @@
             <div class="d-flex flex-wrap justify-content-between flex-md-row flex-column">
                 <div>
                     <h4 class="fw-bold py-3 mb-4">
-                        <i class="icon-header bg-warning bx bx-headphone"></i> &nbsp; Contact
+                        <i class="icon-header bg-warning bx bx-headphone"></i> &nbsp; Contacts
                     </h4>
                 </div>
                 {{-- <div class="py-3 mb-4">

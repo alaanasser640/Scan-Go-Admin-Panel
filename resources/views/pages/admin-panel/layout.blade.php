@@ -45,7 +45,7 @@
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
 
                 <!-- Logo -->
-                <div class="app-brand demo">
+                <div class="app-brand demo" >
                     <a href="{{ route('dashboard') }}" class="app-brand-link">
                         <span class="app-brand-logo demo">
                             <img src="{{ asset('assets/images/orango mini logo.png') }}">
@@ -246,7 +246,7 @@
 
                             <li>
                                 <a class="nav-link" href="{{ url('/profile') }}" style="margin-right: 10px;">
-                                    <img src="{{ asset('assets/images/sara.jpg') }}"
+                                    <img src="images/{{ Auth::user()->image }}"
                                         class="w-px-40 h-auto rounded-circle box-shadow" data-bs-toggle="tooltip"
                                         data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true"
                                         data-bs-original-title="Profile" />
@@ -255,9 +255,25 @@
 
                             <li data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom"
                                 data-bs-html="true" data-bs-original-title="Notifications">
-                                <a class="" href="{{ url('/notification') }}">
-                                    <i class="bx bxs-bell fs-4 navbar-icon"></i>
-                                </a>
+                                @if (Auth::user()->unreadNotifications->count() > 0)
+                                    <span class="badge badge-center rounded-pill bg-primary notify-count">
+                                        {{ Auth::user()->unreadNotifications->count() }}
+                                    </span>
+                                @endif
+
+                                    <a class="" href="{{ route('notifications.index') }}" {{-- data-bs-toggle="dropdown" aria-expanded="true" --}}>
+                                        <i class="bx bxs-bell fs-4 navbar-icon"></i>
+                                    </a>
+
+                                    {{-- <ul class="dropdown-menu dropdown-menu-end" data-popper-placement="bottom-end"
+                                    style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0px, 40.8px, 0px);">
+                                    <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a>
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="{{ route('notifications.index') }}">View All</a></li>
+                                </ul> --}}
                             </li>
 
                             <li data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom"

@@ -4,8 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\DestroyContact;
+use App\Notifications\UpdateContact;
+use Illuminate\Support\Facades\Validator;
+
+
 
 class ContactController extends Controller
 {
@@ -13,7 +20,7 @@ class ContactController extends Controller
     public function index(Request $request)
     {
         // $contacts = Contact::all();
-        
+
         $keyword = $request->get('search');
         if (!empty($keyword)) {
             $contacts = Contact::join('customers', 'customers.id', '=', 'contacts.customer_id')
@@ -33,15 +40,6 @@ class ContactController extends Controller
         ]);
     }
 
-    //edit category in database function
-    public function update(Request $request, Contact $contact)
-    {
-        $contact = Contact::findOrFail($request->contact_id);
-        $contact->status = 1;
-        $contact->update();
-        return redirect()->route('contacts.index')->with('message', 'Contact has marked as read...');
-    }
-
     //delete contact page
     public function show($id)
     {
@@ -52,14 +50,41 @@ class ContactController extends Controller
         ]);
     }
 
+    //edit category in database function
+    public function update(Request $request, Contact $contact)
+    {
+        $contact = Contact::findOrFail($request->contact_id);
+        $contact->status = 1;
+        $contact->update();
+
+        //notifications
+        $admins = User::where('id', '!=', auth()->user()->id)->get();  //get all admins exept who logined
+        $admin_id = auth()->user()->id;  //get the logined admin id
+        $customers = Customer::join('contacts', 'contacts.customer_id', '=', 'customers.id')
+            ->select('customers.id', 'customers.email')->first();  //get customer id
+        Notification::send($admins, new UpdateContact($contact->id, $admin_id, $customers->email));  //get deletion info to notifications
+
+
+        return redirect()->route('contacts.index')->with('message', 'Contact has marked as read...');
+    }
+
     //delete contact from database function
     public function destroy($id)
     {
         $contact = Contact::findOrFail($id);
+
+        //notifications
+        $admins = User::where('id', '!=', auth()->user()->id)->get();  //get all admins exept who logined
+        $admin_id = auth()->user()->id;  //get the logined admin id
+        $customer = Customer::join('contacts', 'contacts.customer_id', '=', 'customers.id')
+            ->select('customers.id', 'customers.email')->first();  //get customer id
+        Notification::send($admins, new DestroyContact($contact->id, $admin_id, $customer->email));  //get deletion info to notifications
+
         $contact->delete();
         return redirect()->route('contacts.index')->with('message', 'Contact has deleted successfully');
     }
-    
+
+
     //add new contact page
     // public function create()
     // {
@@ -90,5 +115,4 @@ class ContactController extends Controller
 
     //     return redirect()->route('contacts.index')->with('message', 'Contact has added successfully');
     // }
-
 }

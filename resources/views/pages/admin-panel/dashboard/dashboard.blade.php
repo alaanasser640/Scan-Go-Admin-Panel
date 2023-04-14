@@ -61,12 +61,13 @@
                     <div class="col-sm-7">
                         <div class="card-body">
                             <h4 class="card-title text-primary">Welcome Back,
-                                <span class="fw-bold text-secondary">Sara!</span> 🎉
+                                <span class="fw-bold text-secondary">{{ Auth::user()->user_name }}</span> 🎉
                             </h4>
                             <p class="mb-4">
                                 <i class="bx bx-calendar"></i> 
                                 <span class="">Last update at:</span>
-                                <span class="text-muted">&nbsp;30/4/2023 | 08:30 PM</span>
+                                {{-- <span class="text-muted">&nbsp;30/4/2023 | 08:30 PM</span> --}}
+                                <span class="text-muted">&nbsp;{{ Auth::user()->updated_at->format('d/m/Y') }} | {{  Auth::user()->updated_at->format('h:i') }}</span>
                             </p>
                             <a href="{{ url('/profile') }}" class="btn btn-sm btn-outline-warning"
                                 style="width:35%;font-size: 0.9rem;">View Profile</a>
@@ -162,7 +163,7 @@
                                 </div>
                             </div>
                             <span class="d-block mb-1">Customers</span>
-                            <h3 class="card-title text-nowrap mb-2">25</h3>
+                            <h3 class="card-title text-nowrap mb-2">{{ $customers }}</h3>
                             <small class="text-success fw-semibold"><i class="bx bx-down-arrow-alt"></i> -14.82%</small>
                         </div>
                     </div>

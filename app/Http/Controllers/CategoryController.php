@@ -4,16 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Validator;
 use App\Models\Category;
+use App\Models\User;
+use App\Notifications\CreateCategory;
+use App\Notifications\DestroyCategory;
+use App\Notifications\UpdateCategory;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 
 class CategoryController extends Controller
 {
     //categories table page
     public function index(Request $request)
     {
-
-
         //search function
         $keyword = $request->get('search');
         if (!empty($keyword)) {
@@ -24,6 +27,7 @@ class CategoryController extends Controller
         } else {
             $categories = Category::latest()->paginate();
         }
+
         return view('pages.admin-panel.categories.categories', [
             'categories' => $categories
         ]);
@@ -77,6 +81,11 @@ class CategoryController extends Controller
 
         $category->save();
 
+        //notifications
+        $admins = User::where('id', '!=', auth()->user()->id)->get();  //get all admins exept who logined
+        $admin_id = auth()->user()->id;  //get the logined admin id
+        Notification::send($admins, new CreateCategory($category->id, $admin_id, $category->name));  //get creation info to notifications
+
         return redirect()->route('categories.index')->with('message', 'Category has added successfully');
     }
 
@@ -118,6 +127,12 @@ class CategoryController extends Controller
 
         // $category->update();
 
+        //notifications
+        $admins = User::where('id', '!=', auth()->user()->id)->get();  //get all admins exept who logined
+        $admin_id = auth()->user()->id;  //get the logined admin id
+        Notification::send($admins, new UpdateCategory($category->id, $admin_id, $category->name));  //get updation info to notifications
+
+
         return redirect()->route('categories.index')->with('message', 'Category has updated successfully');
     }
 
@@ -136,9 +151,18 @@ class CategoryController extends Controller
             unlink($image);
         }
 
+        //notifications
+        $admins = User::where('id', '!=', auth()->user()->id)->get();  //get all admins exept who logined
+        $admin_id = auth()->user()->id;  //get the logined admin id
+        Notification::send($admins, new DestroyCategory($category->id, $admin_id, $category->name));  //get deletion info to notifications
+
         $category->delete();
         return redirect()->route('categories.index')->with('message', 'Category has deleted successfully');
     }
+
+    
+
+
 
     //search category function
     // public function search(Request $request)

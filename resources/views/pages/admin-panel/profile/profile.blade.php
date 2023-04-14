@@ -23,8 +23,12 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="{{ url('/notification') }}">
-                    <i class="bx bx-bell" style="margin: -3px 0px 0px -3px;"></i>&nbsp;&nbsp;Notifications
+                <a class="nav-link" href="{{ route('notifications.index') }}">
+                    <i class="bx bx-bell" style="margin: -3px 0px 0px -3px;"></i>
+                    &nbsp;&nbsp;Notifications&nbsp;
+                    @if (Auth::user()->unreadNotifications->count() > 0)
+                        ( {{ Auth::user()->unreadNotifications->count() }} )
+                    @endif
                 </a>
             </li>
             {{-- <li class="nav-item">
@@ -42,7 +46,7 @@
         <h5 class="card-header">Profile Details</h5>
         <div class="card-body">
             <div class="d-flex align-items-start align-items-sm-center gap-4">
-                <img src="{{ asset('assets/images/sara.jpg') }}" alt="user-avatar"
+                <img src="images/{{ Auth::user()->image }}" alt="user-avatar"
                     class="img-profile d-block rounded-circle" height="130" width="130" id="uploadedAvatar">
                 <div class="button-wrapper">
                     <label for="upload" class="btn btn-outline-warning me-2 mb-4" tabindex="0">

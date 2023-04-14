@@ -8,19 +8,24 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\CreateAdmin;
+use App\Notifications\UpdateAdmin;
+use App\Notifications\DestroyAdmin;
+
 
 class AdminController extends Controller
 {
     public function index(Request $request)
     {
-        
+
 
         //search function
         $keyword = $request->get('search');
         if (!empty($keyword)) {
             $admins = User::where('user_name', 'like', "%$keyword%")
                 ->orWhere('email', 'like', "%$keyword%")
-               
+
                 ->latest()->paginate();
         } else {
             $admins = User::latest()->paginate();
@@ -65,7 +70,7 @@ class AdminController extends Controller
             'password' => 'required|min:8',
         ]);
         if ($validator->fails()) {
-            return redirect()->route('admins.index')->withErrors($validator->errors());
+            return redirect()->back()->withErrors($validator->errors());
         }
 
         $file_name = time() . '.' . request()->image->getClientOriginalExtension();
@@ -76,8 +81,14 @@ class AdminController extends Controller
         $admin->image = $file_name;
         $admin->phone_number = $request->phone_number;
         $admin->email = $request->email;
-        $admin->password= $request->password;
+        $admin->password = $request->password;
         $admin->save();
+
+        //notifications
+        $admins = User::where('id', '!=', auth()->user()->id)->get();  //get all admins exept who logined
+        $admin_id = auth()->user()->id;  //get the logined admin id
+        Notification::send($admins, new CreateAdmin($admin->id, $admin_id, $admin->user_name));  //get creation info to notifications
+
 
         return redirect()->route('admins.index')->with('message', 'Admin has added successfully');
     }
@@ -87,18 +98,14 @@ class AdminController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'user_name' => 'required',
-            
             'phone_number' => 'required',
             'email' => 'required',
-           
         ]);
-        
+
         if ($validator->fails()) {
-            return redirect()->route('admins.index')->withErrors($validator->errors());
+            return redirect()->back()->withErrors($validator->errors());
         }
 
-      
-       
         $file_name = $request->hidden_image;
 
         if ($request->hasFile('image')) {
@@ -107,25 +114,25 @@ class AdminController extends Controller
         }
 
         User::where('id', $admin->id)
-    ->update([
-            "user_name" => $request->user_name,
-        "image" => $file_name,
-      "phone_number" => $request->phone_number,
-        "email" => $request->email,
-    ]);
+            ->update([
+                "user_name" => $request->user_name,
+                "image" => $file_name,
+                "phone_number" => $request->phone_number,
+                "email" => $request->email,
+            ]);
+
+        //notifications
+        $admins = User::where('id', '!=', auth()->user()->id)->get();  //get all admins exept who logined
+        $admin_id = auth()->user()->id;  //get the logined admin id
+        Notification::send($admins, new UpdateAdmin($admin->id, $admin_id, $admin->user_name));  //get updation info to notifications
 
 
-    
         return redirect()->route('admins.index')->with('message', 'Admin has updated successfully');
     }
 
     //delete category from database function
     public function destroy($id)
     {
-        // $category = Category::withCount('products')->findOrFail($id);   
-        // if($category->products->count() > 0) {
-        //     return redirect()->route('categories.show', $category->id)->with('error_message', 'Category cannot be deleted, it has products.');
-        // }
         $admin = User::findOrFail($id);
 
         $image_path = public_path() . "/images/";
@@ -134,9 +141,12 @@ class AdminController extends Controller
             unlink($image);
         }
 
+        //notifications
+        $admins = User::where('id', '!=', auth()->user()->id)->get();  //get all admins exept who logined
+        $admin_id = auth()->user()->id;  //get the logined admin id
+        Notification::send($admins, new DestroyAdmin($admin->id, $admin_id, $admin->user_name));  //get deletion info to notifications
+
         $admin->delete();
         return redirect()->route('admins.index')->with('message', 'Admin has deleted successfully');
     }
-
-    
 }

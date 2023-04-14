@@ -84,7 +84,7 @@
                         @foreach ($admins as $admin)
                             <th scope="row">{{{$id+=1}}}</th>
                             <td>
-                                <img src="images/{{$admin->image}}" class="img-category" alt="image" />
+                                <img src="images/{{$admin->image}}" class="rounded-circle img-user" alt="image" />
                             </td>
                             <td>{{{$admin->user_name}}}</td>
                             <td>{{{$admin->phone}}}</td>

@@ -26,7 +26,7 @@
                         <h4 class="fw-bold py-3 mb-4">
                             <i class="icon-header bg-warning bx bx-receipt"></i>
                             <a class="text-muted fw-normal" href="{{ url('/receipts') }}">&nbsp;Receipts /</a>
-                            Delete Receipt
+                            Show Receipt
                         </h4>
                     </div>
                 </div>
@@ -35,10 +35,10 @@
             </div>
 
             <div class="card-body">
-                <form action="{{ route('receipts.destroy', $receipt->id) }}" method="POST"
+                <form action="" 
                     enctype="multipart/form-data">
-                    @csrf
-                    @method('DELETE')
+                   
+                   
 
                     <!-- <div class="row mb-3 hidden">
                         <label class="col-sm-2 col-form-label">Receipt ID</label>
@@ -164,9 +164,9 @@
                     <br><br>
                     <div class="row justify-content-end">
                         <div class="col-sm-10">
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a class="btn btn-secondary" href="{{ url('/receipts') }}">Cancel</a>
+                            <!-- <button type="submit" class="btn btn-danger">OK</button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+                            <a class="btn btn-secondary" href="{{ url('/receipts') }}">OK</a>
                         </div>
                     </div>
 

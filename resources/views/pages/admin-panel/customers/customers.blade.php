@@ -62,10 +62,16 @@
                         <tr>
                         @foreach ($customers as $customer)
                             <th scope="row">{{{$id+=1}}}</th>
-                            
+                            @if($customer->image == "")
+                            <td>
+                            <img src="images/sara.jpg" class="img-category" alt="image" />
+                            </td>
+                            @endif
+                            @if($customer->image != "")
                             <td>
                             <img src="images/{{$customer->image}}" class="img-category" alt="image" />
                             </td>
+                            @endif
                             <td>{{$customer->user_name}}</td>
                             <td>{{$customer->phone_number}}</td>
                             <td>{{$customer->email}}</td>

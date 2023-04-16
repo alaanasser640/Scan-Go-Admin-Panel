@@ -6,7 +6,7 @@
 
 @endsection
 @if ($errors->any())
-        <div class="alert alert-danger alert-dismissible">
+        <div class="alert alert-danger alert-dismissible" style="margin: 20;">
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -17,8 +17,10 @@
     @endif
 
     @if(session()->has('error'))
-    <div class="alert alert-danger">
+    <div class="alert alert-danger alert-dismissible" style="margin: 20;">
         {{ session()->get('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
     </div>
 @endif
 

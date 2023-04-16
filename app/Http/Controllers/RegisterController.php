@@ -35,7 +35,7 @@ class RegisterController extends Controller
             return redirect()->route('dashboard')
                 ->withSuccess('Signed in');
         }
-        session()->flash('error', 'validation errors');
+        session()->flash('error', 'You are not authenticated!');
         return redirect("log_in");
     }
 

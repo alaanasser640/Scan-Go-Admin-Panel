@@ -5,10 +5,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ReceiptController;
+
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AdminController;
 use App\Models\Category;
+use App\Models\Receipt;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
@@ -49,20 +52,6 @@ Route::get('/delete_customer/{id}', [CustomerController::class, 'delete'])->name
 Route::post('/delete_customer/{id}', [CustomerController::class, 'destroy'])->name('customers.destroy');
 
 
-// Admins
-// Route::get('/admins', function () {
-//     return view('pages.admin-panel.admins.admins');
-// });
-// Route::get('/add_admin', function () {
-//     return view('pages.admin-panel.admins.add_admin');
-// });
-// Route::get('/edit_admin', function () {
-//     return view('pages.admin-panel.admins.edit_admin');
-// });
-// Route::get('/delete_admin', function () {
-//     return view('pages.admin-panel.admins.delete_admin');
-// });
-
 
 
 Route::get('/profile', function () {
@@ -74,25 +63,12 @@ Route::get('/notification', function () {
 });
 
 
-
-Route::get('/receipts', function () {
-    return view('pages.admin-panel.receipts.receipts');
-});
-Route::get('/delete_receipt', function () {
-    return view('pages.admin-panel.receipts.delete_receipt');
-});
-
 Route::get('/contact', function () {
     return view('pages.admin-panel.contact.contact');
 });
 Route::get('/delete_contact', function () {
     return view('pages.admin-panel.contact.delete_contact');
 });
-
-// Route::get('/log_in', function () {
-//     return view('pages.login-register.login');
-// });
-
 
 
 Route::get('/reset_password', function () {
@@ -113,9 +89,10 @@ Route::post('custom-login', [RegisterController::class, 'customLogin'])->name('l
 Route::get('/sign_up', [RegisterController::class, 'registration']);
 Route::post('/sign_up', [RegisterController::class, 'register'])->name('sign_up'); 
 Route::get('/sign-out', [RegisterController::class, 'signOut'])->name('signout');
-// Route::get('/sign_up', [RegisterController::class, 'index']);
-// Route::post('/sign_up', [RegisterController::class, 'register'])->name('sign_up');
 
 
 
 Route::get('/home',[App\Http\Controller::class,'index'])->name('home');
+//receipts
+Route::resource('receipts', ReceiptController::class);
+Route::get('showReceipt/{id}', [ReceiptController::class, 'showReceipt'])->name('showReceipt');

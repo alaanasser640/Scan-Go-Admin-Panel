@@ -1,7 +1,7 @@
 @extends('pages.login-register.layout_2')
 
 @if ($errors->any())
-        <div class="alert alert-danger alert-dismissible">
+        <div class="alert alert-danger alert-dismissible" style="margin: 20;">
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -65,7 +65,7 @@
                             <div class="col-sm-11">
                                 <div class="input-group input-group-merge">
                                     <span class="input-group-text"><i class="bx bx-user"></i></span>
-                                    <input type="text" class="form-control" placeholder="Username" required name="user_name"/>
+                                    <input type="text" class="form-control" placeholder="Username"  name="user_name"/>
                                 </div>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
                             <div class="col-sm-11">
                                 <div class="input-group input-group-merge">
                                     <span class="input-group-text"><i class="bx bx-envelope"></i></span>
-                                    <input type="email" class="form-control" placeholder="Email" required  name="email"/>
+                                    <input type="email" class="form-control" placeholder="Email"   name="email"/>
                                 </div>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
                             <div class="col-sm-11">
                                 <div class="input-group input-group-merge">
                                     <span class="input-group-text"><i class="bx bx-phone"></i></span>
-                                    <input type="tel" class="form-control" placeholder="Phone" required name="phone_number" />
+                                    <input type="tel" class="form-control" placeholder="Phone"  name="phone_number" />
                                 </div>
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                             <div class="col-sm-11">
                                 <div class="input-group input-group-merge">
                                     <span class="input-group-text"><i class="bx bx-lock"></i></span>
-                                    <input type="password" class="form-control" placeholder="Password" required name="password"/>
+                                    <input type="password" class="form-control" placeholder="Password"  name="password"/>
                                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                 </div>
                             </div>

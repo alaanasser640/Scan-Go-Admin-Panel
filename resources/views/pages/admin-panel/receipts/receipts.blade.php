@@ -6,7 +6,7 @@
 
 @section('search_bar')
     <!-- Search -->
-    <form action="" method="GET" accept-charset="UTF-8" role="search" style="width:80%;">
+    <form action="{{ route('receipts.index') }}" method="GET" accept-charset="UTF-8" role="search" style="width:80%;">
         <div class="table-search d-flex align-items-center">
             <i class="bx bx-search fs-4 lh-0"></i>
             <input type="text" class="form-control border-0 shadow-none" name="search" value="{{ request('search') }}"
@@ -17,6 +17,35 @@
 @endsection
 
 @section('content')
+
+{{-- Validation errors alert --}}
+    @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    {{-- Error message alert  --}}
+    @if (session()->has('error_message'))
+        <div class="alert alert-danger alert-dismissible">
+            {{ session()->get('error_message') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    {{-- Message alert --}}
+    @if (session()->has('message'))
+        <div class="alert alert-success alert-dismissible">
+            {{ session()->get('message') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <!-- Table -->
     <div class="card p-4">
         <div>
@@ -40,6 +69,7 @@
             <div class="table-responsive text-nowrap">
                 <table class="table">
                     <thead>
+                   
                         <tr class="text-nowrap">
                             <th> ID </th>
                             <th> Receipt No. </th>
@@ -52,88 +82,46 @@
                             <th> Preview </th>
                             <th> Action </th>
                         </tr>
+                       
                     </thead>
                     <tbody>
+                    <!-- // RECEIPT NO.	CUST. EMAIL	TOTAL QUANTITY	TOTAL PRICE	DATE	TIME	SENT BY EMAIL -->
+                    <?php $id = 0; ?>
+                        @foreach ($receipts as $receipt)
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
+                            <th scope="row">{{ $id += 1 }}</th>
+                            <td>{{ $receipt->receipt_number }}</td>
+                            <td>{{ $receipt->email }}</td>
+                            <td>{{ $receipt->total_quantity }}</td>
+                            <td>{{ $receipt->total_price }}</td>
+                            <td>{{ $receipt->date }}</td>
+                            <td>{{ $receipt->time }}</td>
                             <td><button class="btn btn-secondary" disabled> Done </button></td>
                             <td style="text-align-last: center;">
-                                <a href="" data-bs-toggle="modal" data-bs-target="#viewModal">
+                                <!-- <a href="" data-bs-toggle="modal" data-bs-target="#viewModal">
+                                    <i class="bx bx-show-alt text-secondary fs-4"></i>
+                                </a> -->
+                                <a href="{{ route('showReceipt', $receipt->id) }}" data-bs-toggle="tooltip" data-bs-offset="0,4"
+                                    data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Show">
                                     <i class="bx bx-show-alt text-secondary fs-4"></i>
                                 </a>
                             </td>
+
                             <td>
                                 {{-- <a href="{{ url('/edit_receipt') }}">
                                 <i class="bx bxs-edit-alt text-info"></i>
                             </a>
                             &nbsp;&nbsp; --}}
-                                <a href="{{ url('/delete_receipt') }}" data-bs-toggle="tooltip" data-bs-offset="0,4"
+                                <a href="{{ route('receipts.show', $receipt->id) }}" data-bs-toggle="tooltip" data-bs-offset="0,4"
                                     data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Delete">
                                     <i class="bx bx-trash text-danger"></i>
                                 </a>
 
                             </td>
                         </tr>
+                        @endforeach
 
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td><button class="btn btn-info"> Send </button></td>
-                            <td style="text-align-last: center;">
-                                <a href="" data-bs-toggle="modal" data-bs-target="#viewModal">
-                                    <i class="bx bx-show-alt text-secondary fs-4"></i>
-                                </a>
-                            </td>
-                            <td>
-                                {{-- <a href="{{ url('/edit_receipt') }}">
-                                <i class="bx bxs-edit-alt text-info"></i>
-                            </a>
-                            &nbsp;&nbsp; --}}
-                                <a href="{{ url('/delete_receipt') }}" data-bs-toggle="tooltip" data-bs-offset="0,4"
-                                    data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Delete">
-                                    <i class="bx bx-trash text-danger"></i>
-                                </a>
-
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td>Table cell</td>
-                            <td><button class="btn btn-info"> Send </button></td>
-                            <td style="text-align-last: center;">
-                                <a href="" data-bs-toggle="modal" data-bs-target="#viewModal">
-                                    <i class="bx bx-show-alt text-secondary fs-4"></i>
-                                </a>
-                            </td>
-                            <td>
-                                {{-- <a href="{{ url('/edit_receipt') }}">
-                                <i class="bx bxs-edit-alt text-info"></i>
-                            </a>
-                            &nbsp;&nbsp; --}}
-                                <a href="{{ url('/delete_receipt') }}" data-bs-toggle="tooltip" data-bs-offset="0,4"
-                                    data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Delete">
-                                    <i class="bx bx-trash text-danger"></i>
-                                </a>
-
-                            </td>
-                        </tr>
+                      
 
 
 

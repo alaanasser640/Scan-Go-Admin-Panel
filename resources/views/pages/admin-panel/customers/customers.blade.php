@@ -6,12 +6,6 @@
 
 @section('search_bar')
 
-@if (session()->has('success'))
-        <div class="alert alert-success alert-dismissible">
-            {{ session()->get('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
     <!-- Search -->
     <form action="" method="GET" accept-charset="UTF-8" role="search" style="width:80%;">
         <div class="table-search d-flex align-items-center">
@@ -25,6 +19,13 @@
 @endsection
 
 @section('content')
+    @if (session()->has('success'))
+            <div class="alert alert-success alert-dismissible">
+                {{ session()->get('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+    @endif
+    
     <!-- Table -->
     <div class="card p-4">
         <div>
@@ -69,7 +70,7 @@
                             @endif
                             @if($customer->image != "")
                             <td>
-                            <img src="images/{{$customer->image}}" class="img-category" alt="image" />
+                            <img src="images/{{$customer->image}}" class="rounded-circle img-user" alt="image" />
                             </td>
                             @endif
                             <td>{{$customer->user_name}}</td>

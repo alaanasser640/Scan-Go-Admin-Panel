@@ -25,7 +25,7 @@
 @endif
 
 @section('content')
-    <div class="col-md-9">
+    <div class="col-md-9 frame">
         <div class="card" style="border-radius: 15px;">
             <div class="row g-0">
 
@@ -99,7 +99,7 @@
 
                 {{-- Image --}}
                 <div class="col-md-6  right-box">
-                    <div class="px-5">
+                    <div class="px-5 frame-img">
                         <img class="card-img card-img-left" src="{{ asset('assets/images/illustrations/sign in.png') }}"
                             alt="Card image">
                     </div>

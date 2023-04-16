@@ -45,7 +45,7 @@
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
 
                 <!-- Logo -->
-                <div class="app-brand demo">
+                <div class="app-brand demo" >
                     <a href="{{ route('dashboard') }}" class="app-brand-link">
                         <span class="app-brand-logo demo">
                             <img src="{{ asset('assets/images/orango mini logo.png') }}">
@@ -74,7 +74,8 @@
 
                     <!-- Categories -->
                     {{-- <li class="menu-item {{ Request::is('categories') || Request::is('add_category') || Request::is('edit_category') || Request::is('delete_category') ? 'active' : '' }}"> --}}
-                    <li class="menu-item {{ Request::is('categories') || Request::is('categories/*') ? 'active' : '' }}">
+                    <li
+                        class="menu-item {{ Request::is('categories') || Request::is('categories/*') ? 'active' : '' }}">
                         <a href="{{ route('categories.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-category"></i>
                             <div data-i18n="Analytics">Categories</div>
@@ -84,7 +85,7 @@
                     <!-- Products -->
                     {{-- <li class="menu-item  {{ Request::is('products') || Request::is('add_product') || Request::is('edit_product') || Request::is('delete_product') ? 'active' : '' }}"> --}}
                     <li class="menu-item  {{ Request::is('products') || Request::is('products/*') ? 'active' : '' }}">
-                        <a href="{{ url('/products') }}" class="menu-link">
+                        <a href="{{ route('products.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-package"></i>
                             <div data-i18n="Analytics">Products</div>
                         </a>
@@ -93,7 +94,7 @@
                     <!-- Offers -->
                     {{-- <li class="menu-item {{ Request::is('offers') || Request::is('add_offer') || Request::is('edit_offer') || Request::is('delete_offer') ? 'active' : '' }}"> --}}
                     <li class="menu-item {{ Request::is('offers') || Request::is('offers/*') ? 'active' : '' }}">
-                        <a href="{{ url('/offers') }}" class="menu-link">
+                        <a href="{{ route('offers.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bxs-offer"></i>
                             <div data-i18n="Analytics">Offers</div>
                         </a>
@@ -163,11 +164,11 @@
                     </li>
 
                     <!-- Contact -->
-                    <li
-                        class="menu-item {{ Request::is('contact') || Request::is('delete_contact') ? 'active' : '' }}">
-                        <a href="{{ url('/contact') }}" class="menu-link">
+                    {{-- <li class="menu-item {{ Request::is('contact') || Request::is('delete_contact') ? 'active' : '' }}"> --}}
+                    <li class="menu-item {{ Request::is('contacts') || Request::is('contacts/*') ? 'active' : '' }}">
+                        <a href="{{ route('contacts.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-headphone"></i>
-                            <div data-i18n="Analytics">Contact</div>
+                            <div data-i18n="Analytics">Contacts</div>
                         </a>
                     </li>
 
@@ -245,7 +246,7 @@
 
                             <li>
                                 <a class="nav-link" href="{{ url('/profile') }}" style="margin-right: 10px;">
-                                    <img src="{{ asset('assets/images/sara.jpg') }}"
+                                    <img src="images/{{ Auth::user()->image }}"
                                         class="w-px-40 h-auto rounded-circle box-shadow" data-bs-toggle="tooltip"
                                         data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true"
                                         data-bs-original-title="Profile" />
@@ -254,9 +255,25 @@
 
                             <li data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom"
                                 data-bs-html="true" data-bs-original-title="Notifications">
-                                <a class="" href="{{ url('/notification') }}">
-                                    <i class="bx bxs-bell fs-4 navbar-icon"></i>
-                                </a>
+                                @if (Auth::user()->unreadNotifications->count() > 0)
+                                    <span class="badge badge-center rounded-pill bg-primary notify-count">
+                                        {{ Auth::user()->unreadNotifications->count() }}
+                                    </span>
+                                @endif
+
+                                    <a class="" href="{{ route('notifications.index') }}" {{-- data-bs-toggle="dropdown" aria-expanded="true" --}}>
+                                        <i class="bx bxs-bell fs-4 navbar-icon"></i>
+                                    </a>
+
+                                    {{-- <ul class="dropdown-menu dropdown-menu-end" data-popper-placement="bottom-end"
+                                    style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0px, 40.8px, 0px);">
+                                    <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a>
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="{{ route('notifications.index') }}">View All</a></li>
+                                </ul> --}}
                             </li>
 
                             <li data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom"
@@ -314,7 +331,7 @@
     <!-- Core JS -->
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/selectize.min.js') }}"></script>
-    
+
     <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
     <script src="{{ asset('assets/libs/apex-charts/apexcharts.js') }}"></script>
     <script src="{{ asset('assets/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>

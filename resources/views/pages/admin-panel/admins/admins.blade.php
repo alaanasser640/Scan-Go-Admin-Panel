@@ -92,7 +92,7 @@
                             @if($admin->image !="")
 
                             <td>
-                                <img src="images/{{$admin->image}}" class="img-category" alt="image" />
+                                <img src="images/{{$admin->image}}" class="rounded-circle img-user" alt="image" />
                             </td>
                             @endif    
                             <td>{{{$admin->user_name}}}</td>

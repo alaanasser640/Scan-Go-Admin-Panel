@@ -46,6 +46,15 @@
         </div>
     @endif
 
+    <!-- Note alert -->
+    @if (session()->has('note'))
+        <div class="alert alert-dark alert-dismissible">
+            {{ session()->get('note') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
+        </div>
+    @endif
+
     <!-- Table -->
     <div class="card p-4">
         <div>

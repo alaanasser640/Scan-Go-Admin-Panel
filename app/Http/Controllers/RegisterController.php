@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Notifications\RegisterAdmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Notification;
+
 
 
 class RegisterController extends Controller
@@ -62,7 +65,7 @@ class RegisterController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-     
+    
         $user = new User();
         $user->user_name = $request->user_name;
         $user->email = $request->email;
@@ -71,9 +74,15 @@ class RegisterController extends Controller
 
         $user->save();
         //dd($validator);
-      
+        
         $this->customLogin($request);
         return redirect()->route('dashboard')->withSuccess('You have signed-in');
+
+        //notifications
+        // $admins = User::where('id', '!=', auth()->user()->id)->get();  //get all admins exept who logined
+        // $admin_id = auth()->user()->id;  //get the logined admin username
+        // Notification::send($admins, new RegisterAdmin($user->id, $user->name));  //get creation info to notifications
+
     }
 
     public function create(array $data)

@@ -82,28 +82,30 @@
                         <?php $id = 0; ?>
                         <tr>
                             @foreach ($categories as $category)
-                        
-                            <th scope="row"> {{{$id+=1}}} </th>
-                            <td>
-                                <img src="images/{{$category->image}}" class="img-category" alt="image" />
-                            </td>
-                            <td>{{{$category->name}}}</td>
-                            <td>{{{$category->num_of_types}}}</td>
-                            <td>{{{$category->location}}}</td>
-                            <td>
-                                <a href="{{ route('categories.edit', $category->id) }}" data-bs-toggle="tooltip" data-bs-offset="0,4"
-                                    data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Edit">
-                                    <i class="bx bxs-edit-alt text-info"></i>
-                                </a>
-                                &nbsp;&nbsp;
-                                <a href="{{ route('categories.show', $category->id) }}" data-bs-toggle="tooltip" data-bs-offset="0,4"
-                                    data-bs-placement="bottom" data-bs-html="true" data-bs-original-title="Delete">
-                                    <i class="bx bx-trash text-danger"></i>
-                                </a>
-                            </td>
+                                <th scope="row"> {{ $id += 1 }} </th>
+                                
+                                <td>
+                                    <img src="images/{{ $category->image }}" class="img-category" alt="image" />
+                                </td>
+                                <td>{{ $category->name }}</td>
+                                <td>{{ $category->num_of_types }}</td>
+                                <td>{{ $category->location }}</td>
+                                <td>
+                                    <a href="{{ route('categories.edit', $category->id) }}" data-bs-toggle="tooltip"
+                                        data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true"
+                                        data-bs-original-title="Edit">
+                                        <i class="bx bxs-edit-alt text-info"></i>
+                                    </a>
+                                    &nbsp;&nbsp;
+                                    <a href="{{ route('categories.show', $category->id) }}" data-bs-toggle="tooltip"
+                                        data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true"
+                                        data-bs-original-title="Delete">
+                                        <i class="bx bx-trash text-danger"></i>
+                                    </a>
+                                </td>
                         </tr>
                         @endforeach
-                        
+
                     </tbody>
                 </table>
                 <!--/ Table -->

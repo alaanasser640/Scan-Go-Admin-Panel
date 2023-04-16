@@ -7,12 +7,40 @@
 @section('search_bar')
     <!-- Search -->
     <div class="table-search-disabled d-flex align-items-center">
-        <i class="bx bx-search fs-4 lh-0"></i> 
-        <input type="text" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search..." disabled/>
+        <i class="bx bx-search fs-4 lh-0"></i>
+        <input type="text" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search..."
+            disabled />
     </div>
     <!-- /Search -->
 @endsection
 @section('content')
+    <!-- Validation errors alert -->
+    @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    <!-- Error message alert -->
+    @if (session()->has('error_message'))
+        <div class="alert alert-danger alert-dismissible">
+            {{ session()->get('error_message') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    <!-- Message alert -->
+    @if (session()->has('message'))
+        <div class="alert alert-success alert-dismissible">
+            {{ session()->get('message') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
     <!-- Form -->
     <div class="col-xxl">
         <div class="card mb-4">
@@ -72,7 +100,8 @@
                         <label class="col-sm-2 col-form-label">Producer</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
-                                <input type="text" class="form-control" name="producer" placeholder="Producer" required />
+                                <input type="text" class="form-control" name="producer" placeholder="Producer"
+                                    required />
                             </div>
                         </div>
                     </div>

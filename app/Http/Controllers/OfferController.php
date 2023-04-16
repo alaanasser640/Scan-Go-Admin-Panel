@@ -4,10 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Offer;
 use App\Models\Product;
+use App\Models\User;
+use App\Notifications\CreateOffer;
+use App\Notifications\DestroyOffer;
+use App\Notifications\UpdateOffer;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Notification;
+
 
 class OfferController extends Controller
 {
@@ -23,7 +29,7 @@ class OfferController extends Controller
         $keyword = $request->get('search');
         if (!empty($keyword)) {
             $offers = Offer::join('products', 'products.id', '=', 'offers.product_id')
-                ->select('products.id', 'products.name', 'products.image', 'offers.id', 'offers.value', 'offers.started_at', 'offers.ended_at')
+                ->select('products.id', 'products.name', 'products.image', 'offers.*')
                 ->orWhere('products.name', 'like', "%$keyword%")
                 ->orWhere('value', 'like', "%$keyword%" . "%")
                 ->orWhere('started_at', 'like', "%$keyword%")
@@ -31,7 +37,7 @@ class OfferController extends Controller
                 ->paginate();
         } else {
             $offers = Offer::join('products', 'products.id', '=', 'offers.product_id')
-                ->select('products.id', 'products.name', 'products.image', 'offers.id', 'offers.value', 'offers.started_at', 'offers.ended_at')
+                ->select('products.id', 'products.name', 'products.image', 'offers.*')
                 ->paginate();
         }
         $products = Product::all();
@@ -95,15 +101,38 @@ class OfferController extends Controller
 
         $validator = Validator::make($request->all(), [
             'product_id' => 'required|unique:offers,product_id',
-            'value' => 'required|integer|min:1',
+            'value' => 'required|integer|min:1|max:100',
             'started_at' => 'required|date|after_or_equal:today',
             'ended_at' => 'required|date|after_or_equal:started_at'
         ]);
         if ($validator->fails()) {
-            return redirect()->route('offers.index')->withErrors($validator->errors());
+            return redirect()->back()->withErrors($validator->errors());
         }
 
-        Offer::create($request->all());
+        // Offer::create($request->all());
+
+        $offer = new Offer();
+        $offer->product_id = $request->product_id;
+        $offer->value = $request->value;
+        $offer->started_at = $request->started_at;
+        $offer->ended_at = $request->ended_at;
+        $offer->save();
+
+
+        //notifications
+        // $admins = User::where('id', '!=', auth()->user()->id)->get();  //get all admins exept who logined
+        // $admin_id = auth()->user()->id;  //get the logined admin id
+        // $product = Product::join('offers', 'products.id', '=', 'offers.product_id')
+        //     ->select('products.id as p_id', 'products.name')->first();  //get product id
+        // Notification::send($admins, new CreateOffer($offer->id, $admin_id, $product->name));  //get deletion info to notifications
+
+        $admins = User::where('id', '!=', auth()->user()->id)->get();  //get all admins exept who logined
+        $admin_id = auth()->user()->id;  //get the logined admin id
+        $product = Offer::join('products', 'offers.product_id', '=', 'products.id')
+            ->select('offers.id', 'products.name')->first();  //get customer id
+        Notification::send($admins, new CreateOffer($product->id, $admin_id, $product->name));  //get deletion info to notifications
+
+
         return redirect()->route('offers.index')->with('message', 'Offer added successfully');
     }
 
@@ -112,12 +141,12 @@ class OfferController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'product_id' => 'required',
-            'value' => 'required|integer|min:1',
+            'value' => 'required|integer|min:1|max:100',
             'started_at' => 'required|date|after_or_equal:today',
             'ended_at' => 'required|date|after_or_equal:started_at'
         ]);
         if ($validator->fails()) {
-            return redirect()->route('offers.index')->withErrors($validator->errors());
+            return redirect()->back()->withErrors($validator->errors());
         }
 
         $offer = Offer::findOrFail($request->offer_id);
@@ -128,14 +157,29 @@ class OfferController extends Controller
         $offer->ended_at = $request->ended_at;
         $offer->update();
 
+        //notifications
+        $admins = User::where('id', '!=', auth()->user()->id)->get();  //get all admins exept who logined
+        $admin_id = auth()->user()->id;  //get the logined admin id
+        $product = Offer::join('products', 'offers.product_id', '=', 'products.id')
+            ->select('offers.id', 'products.name')->first();  //get customer id
+        Notification::send($admins, new UpdateOffer($product->id, $admin_id, $product->name));  //get deletion info to notifications
+
         return redirect()->route('offers.index')->with('message', 'Offer updated successfully');
     }
 
     //delete offer from database function
     public function destroy($id)
     {
-        $offers = Offer::findOrFail($id);
-        $offers->delete();
+        $offer = Offer::findOrFail($id);
+
+        //notifications
+        $admins = User::where('id', '!=', auth()->user()->id)->get();  //get all admins exept who logined
+        $admin_id = auth()->user()->id;  //get the logined admin id
+        $product = Offer::join('products', 'offers.product_id', '=', 'products.id')
+            ->select('offers.id', 'products.name')->first();  //get customer id
+        Notification::send($admins, new DestroyOffer($product->id, $admin_id, $product->name));  //get deletion info to notifications
+
+        $offer->delete();
         return redirect()->route('offers.index')->with('message', 'Offer has deleted successfully');
     }
 
@@ -143,7 +187,7 @@ class OfferController extends Controller
     public function expired()
     {
         Artisan::call('offer:expired');
-        return redirect()->route('offers.index')->with('message', 'Offer has expired!!');
+        return redirect()->route('offers.index')->with('note', 'Offer has expired!!');
     }
     
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\Receipt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -65,40 +66,58 @@ class ReceiptController extends Controller
 
 
         ]);
-           if ($validator->fails()) {
-               return $this->returnError("Validation Error", $validator->errors(), 400);
-           }
+        if ($validator->fails()) {
+            return $this->returnError("Validation Error", $validator->errors(), 400);
+        }
 
-           $receipt = Receipt::create([
-               'customer_id' => $request->customer_id,
-               'receipt_number' => random_int(1, 10000),
-               'total_price' => $request->total_price,
-               'date' => Carbon::now()->format('Y-m-d'),
-               'time' => Carbon::now()->format('H:i:s'),
-               'total_quantity' => $request->total_quantity,
+        $receipt = Receipt::create([
+            'customer_id' => $request->customer_id,
+            'receipt_number' => random_int(1, 10000),
+            'date' => Carbon::now()->format('Y-m-d'),
+            'time' => Carbon::now()->format('H:i:s'),
 
-           ]);
 
-          $receipt_id = $receipt->id;
-        
+        ]);
+
+        $receipt_id = $receipt->id;
 
 
 
-       $data = $request->data;
-       foreach ($data as $id => $quantity) {
-           $receipt = DB::table('purchases')->insert([
-               'receipt_id' => $receipt_id,
-               'quantity' => $quantity,
-               'product_id' => $id
-               
-           ]);
 
-           if(!($id >= 0))
-           {
-            break;
-           }
-           
-    }
+        $data = $request->data;
+        $totalPrice = 0;
+        $totalQuantity = 0;
+
+        foreach ($data as $id => $quantity) {
+            $price = DB::table('products')->select("price", 'sold_units')->where('id', $id)->get()->first();
+            // update quantity  and sold_units
+            $product = Product::find($id);
+            $product->stock -= intval($quantity);
+            $product->sold_units += intval($quantity);
+            $product->save();
+            ///
+            $totalPrice += intval($price->price);
+            $totalQuantity += intval($quantity);
+
+            // add purchases
+            $receipt = DB::table('purchases')->insert([
+                'receipt_id' => $receipt_id,
+                'quantity' => $quantity,
+                'product_id' => $id,
+                'total_price' => $quantity * intval($price->price),
+
+            ]);
+
+            if (!($id >= 0)) {
+                break;
+            }
+        }
+
+        $receipt2 = Receipt::find($receipt_id);
+        $receipt2->total_price = $totalPrice;
+        $receipt2->total_quantity = $totalQuantity;
+        $receipt2->save();
+        return $this->returnSuccessMessage("Receipt Added Successfully", 201);  
     }
 
     // {

@@ -39,7 +39,9 @@ class ReceiptController extends Controller
 
         $purchases = Receipt::Join('purchases', 'receipts.id', '=', 'purchases.receipt_id')
         ->Join('products', 'purchases.product_id', '=', 'products.id')
-        ->select('purchases.quantity','purchases.total_price', 'products.name','products.price')->get();
+        ->select('purchases.quantity','purchases.total_price', 'products.name','products.price')
+        ->where('receipts.id', $id)
+        ->get();
         return view('pages.admin-panel.receipts.delete_receipt', [
              'purchases' => $purchases, 
             'receipt' => $receipt
@@ -63,7 +65,9 @@ class ReceiptController extends Controller
         
         $purchases = Receipt::Join('purchases', 'receipts.id', '=', 'purchases.receipt_id')
         ->Join('products', 'purchases.product_id', '=', 'products.id')
-        ->select('purchases.quantity','purchases.total_price', 'products.name','products.price')->get();
+        ->select('purchases.quantity','purchases.total_price', 'products.name','products.price')
+        ->where('receipts.id', $id)
+        ->get();
         return view('pages.admin-panel.receipts.show_receipt', [
              'purchases' => $purchases, 
              'receipt' => $receipt

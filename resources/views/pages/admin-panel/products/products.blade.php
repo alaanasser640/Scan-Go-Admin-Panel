@@ -103,7 +103,11 @@
                                         {{ $product->price }} L.E
                                     @endif
                                 </td>
-                                <td> ----- </td> {{-- sold units --}}
+                                @if($product->sold_units == 0)
+                                <td> 0 </td> {{-- sold units --}}
+                                @else
+                                <td> {{ $product->sold_units }} </td> {{-- sold units --}}
+                                @endif
                                 <td>
                                     <a href="{{ route('products.edit', $product->id) }}" data-bs-toggle="tooltip"
                                         data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true"

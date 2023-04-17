@@ -107,11 +107,11 @@ class SignupController extends Controller
     }
     public function updateProfile(Request $request)
     {
-        
+        // add link to image 
         $request->validate([
             'user_name' => 'required|string',
             'phone_number'=> 'required',
-            'image' => 'nullable',
+            
             'email' => 'required|string|email|max:255',
             'password' => 'nullable',
         ]);
@@ -120,7 +120,7 @@ class SignupController extends Controller
         if($request->image)
         { 
             $request->validate([
-            'image' => 'required|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'mimes:jpeg,png,jpg|max:2048',
             ]);
            
             $imageName = time().'.'.$request->image->extension();  

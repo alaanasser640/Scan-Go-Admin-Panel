@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('date');
             $table->time('time');
             $table->integer('receipt_number');
-            $table->boolean('sent_by_email');
+            $table->boolean('sent_by_email')->default(0);
             $table->double('total_price');
             $table->integer('total_quantity');
             $table->timestamps();

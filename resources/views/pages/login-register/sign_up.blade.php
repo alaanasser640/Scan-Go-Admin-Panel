@@ -43,7 +43,7 @@
                     <div class="app-brand mt-2">
                         <a href="{{ route('dashboard') }}" class="app-brand-link gap-2">
                             <span class="app-brand-logo demo">
-                                <img src="{{ asset('assets/images/orango mini logo.png') }}" />
+                                <img src="{{ asset('assets/images/logos/orango mini logo.png') }}" />
                             </span>
                             <span class="font-family app-brand-text demo text-body fw-bolder text-primary">OranGo</span>
                         </a>

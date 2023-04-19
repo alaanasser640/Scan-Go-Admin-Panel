@@ -120,12 +120,6 @@ class OfferController extends Controller
 
 
         //notifications
-        // $admins = User::where('id', '!=', auth()->user()->id)->get();  //get all admins exept who logined
-        // $admin_id = auth()->user()->id;  //get the logined admin id
-        // $product = Product::join('offers', 'products.id', '=', 'offers.product_id')
-        //     ->select('products.id as p_id', 'products.name')->first();  //get product id
-        // Notification::send($admins, new CreateOffer($offer->id, $admin_id, $product->name));  //get deletion info to notifications
-
         $admins = User::where('id', '!=', auth()->user()->id)->get();  //get all admins exept who logined
         $admin_id = auth()->user()->id;  //get the logined admin id
         $product = Offer::join('products', 'offers.product_id', '=', 'products.id')

@@ -10,7 +10,7 @@
     <meta name="description" content="" />
 
     {{-- Logo icon --}}
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/orango mini logo.png') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/logos/orango mini logo.png') }}" />
 
     {{-- Fonts --}}
     <link rel="stylesheet" href="{{ asset('assets/fonts/boxicons.css') }}" />
@@ -48,7 +48,7 @@
                 <div class="app-brand demo" >
                     <a href="{{ route('dashboard') }}" class="app-brand-link">
                         <span class="app-brand-logo demo">
-                            <img src="{{ asset('assets/images/orango mini logo.png') }}">
+                            <img src="{{ asset('assets/images/logos/orango mini logo.png') }}">
                         </span>
                         <span class="font-family app-brand-text demo menu-text fw-bolder ms-3">OranGo</span>
                     </a>

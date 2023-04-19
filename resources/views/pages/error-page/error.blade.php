@@ -11,7 +11,7 @@
     <meta name="description" content="" />
 
     {{-- Logo icon --}}
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/orango mini logo.png') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/logos/gray mini logo.png') }}" />
 
     {{-- Fonts --}}
     <link rel="stylesheet" href="{{ asset('assets/fonts/boxicons.css') }}" />
@@ -43,7 +43,7 @@
             <p class="mb-4 mx-2">Oops! 😖 The requested URL was not found on this server.</p>
             <a href="{{ route('dashboard') }}" class="btn btn-primary">Back to home</a>
             <div class="mt-3">
-                <img src="{{ asset('assets/images/illustrations/error.png') }}" alt="error" width="500"
+                <img src="{{ asset('assets/images/illustrations/404_error.png') }}" alt="error" width="500"
                     class="img-fluid" />
             </div>
         </div>

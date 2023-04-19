@@ -172,50 +172,50 @@
                         </a>
                     </li>
 
-                    <!-- Pages -->
-                    <li class="menu-header small text-uppercase">
+                    <!------------------- Pages ---------------------------------------------->
+                    {{-- <li class="menu-header small text-uppercase">
                         <span class="menu-header-text">Pages</span>
-                    </li>
+                    </li> --}}
 
                     {{-- Login --}}
-                    <li class="menu-item">
+                    {{-- <li class="menu-item">
                         <a href="{{ url('/log_in') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-log-in-circle"></i>
                             <div data-i18n="Analytics">Login</div>
                         </a>
-                    </li>
+                    </li> --}}
 
                     {{-- Sign up --}}
-                    <li class="menu-item">
+                    {{-- <li class="menu-item">
                         <a href="{{ url('/sign_up') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-user-plus"></i>
                             <div data-i18n="Analytics">Sign Up</div>
                         </a>
-                    </li>
+                    </li> --}}
 
                     {{-- Reset password --}}
-                    <li class="menu-item">
+                    {{-- <li class="menu-item">
                         <a href="{{ url('/reset_password') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-lock"></i>
                             <div data-i18n="Analytics">Reset Password</div>
                         </a>
-                    </li>
+                    </li> --}}
 
                     {{-- landing page --}}
-                    <li class="menu-item">
+                    {{-- <li class="menu-item">
                         <a href="{{ url('/landing_page') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-analyse"></i>
                             <div data-i18n="Analytics">Landing Page</div>
                         </a>
-                    </li>
+                    </li> --}}
 
                     {{-- Error --}}
-                    <li class="menu-item">
+                    {{-- <li class="menu-item">
                         <a href="{{ url('/error') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-error"></i>
                             <div data-i18n="Analytics">Error</div>
                         </a>
-                    </li>
+                    </li> --}}
 
                 </ul>
 

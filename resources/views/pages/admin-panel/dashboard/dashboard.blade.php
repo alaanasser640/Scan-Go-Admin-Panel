@@ -137,17 +137,17 @@
                     </div>
                 </div>
 
-                <!-- Shopping carts card -->
+                <!-- Receipts card -->
                 <div class="col-6 mb-4">
                     <div class="card">
                         <div class="card-body">
                             <div class="card-title d-flex align-items-start justify-content-between">
                                 <div class="avatar flex-shrink-0">
-                                    <i class="icon-card card-4 bx bxs-cart"></i>
+                                    <i class="icon-card card-4 bx bxs-receipt"></i>
                                 </div>
                             </div>
-                            <span class="fw-semibold d-block mb-1">Shopping Carts</span>
-                            <h3 class="card-title mb-2">12</h3>
+                            <span class="fw-semibold d-block mb-1">Receipts</span>
+                            <h3 class="card-title mb-2">{{ $receipts }}</h3>
                             <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +28.14%</small>
                         </div>
                     </div>
@@ -169,17 +169,17 @@
                     </div>
                 </div>
 
-                <!-- Receipt card -->
+                <!-- Admins card -->
                 <div class="col-6 mb-4">
                     <div class="card">
                         <div class="card-body">
                             <div class="card-title d-flex align-items-start justify-content-between">
                                 <div class="avatar flex-shrink-0">
-                                    <i class="icon-card card-6 bx bxs-receipt"></i>
+                                    <i class="icon-card card-6 bx bx-group"></i>
                                 </div>
                             </div>
-                            <span class="fw-semibold d-block mb-1">Receipts</span>
-                            <h3 class="card-title mb-2">12</h3>
+                            <span class="fw-semibold d-block mb-1">Admins</span>
+                            <h3 class="card-title mb-2">{{ $admins }}</h3>
                             <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i> +28.14%</small>
                         </div>
                     </div>

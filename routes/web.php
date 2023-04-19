@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ContactController;
@@ -12,10 +11,6 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\NotificationController;
-use App\Models\Category;
-use App\Models\Receipt;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 
@@ -81,36 +76,12 @@ Route::get('/profile', function () {
     return view('pages.admin-panel.profile.profile');
 });
 
-Route::get('/notification', function () {
-    return view('pages.admin-panel.notification_profile.notification');
-});
-
-
-Route::get('/contact', function () {
-    return view('pages.admin-panel.contact.contact');
-});
-Route::get('/delete_contact', function () {
-    return view('pages.admin-panel.contact.delete_contact');
-});
-// Route::get('/notification', function () {
-//     return view('pages.admin-panel.notification_profile.notification');
-// });
-
 Route::get('/receipts', function () {
     return view('pages.admin-panel.receipts.receipts');
 });
 Route::get('/delete_receipt', function () {
     return view('pages.admin-panel.receipts.delete_receipt');
 });
-
-// Route::get('/contact', function () {
-//     return view('pages.admin-panel.contact.contact');
-// });
-
-// Route::get('/delete_contact', function () {
-//     return view('pages.admin-panel.contact.delete_contact');
-// });
-
 
 Route::get('/reset_password', function () {
     return view('pages.login-register.reset_password');
@@ -133,8 +104,6 @@ Route::get('/sign-out', [RegisterController::class, 'signOut'])->name('signout')
 
 
 
-Route::get('/home',[App\Http\Controller::class,'index'])->name('home');
 //receipts
 Route::resource('receipts', ReceiptController::class);
 Route::get('showReceipt/{id}', [ReceiptController::class, 'showReceipt'])->name('showReceipt');
-Route::get('/home', [App\Http\Controller::class, 'index'])->name('home');

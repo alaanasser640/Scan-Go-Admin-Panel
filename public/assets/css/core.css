@@ -18446,44 +18446,44 @@ html:not(.layout-footer-fixed) .content-wrapper {
 }
 
 .logo {
-  animation: slide_right 1s ease forwards;
+  animation: slide_right 0.5s ease forwards;
 }
 
 .nav-a {
   opacity: 0;
-  animation: slide_right 1s ease forwards;
+  animation: slide_right 0.5s ease forwards;
   animation-delay: calc(.2s * var(--i));
 }
 
 
 .header {
   opacity: 0;
-  animation: slide_bottom 1s ease forwards;
-  animation-delay: 1s;
+  animation: slide_bottom 0.5s ease forwards;
+  animation-delay: 0.5s;
 }
 
 .content-p1 {
   animation: slide_top 1s ease forwards;
-  animation-delay: 1s;
+  animation-delay: 0.5s;
   opacity: 0;
 }
 
 .content-p2 {
   animation: slide_top 1s ease forwards;
-  animation-delay: 1s;
+  animation-delay: 0.5s;
   opacity: 0;
 }
 
 .content-btn {
   animation: slide_right 1s ease forwards;
-  animation-delay: 1s;
+  animation-delay: 0.5s;
   opacity: 0;
 }
 
 .landing-img {
   opacity: 0;
   animation: zoom_in 1s ease forwards, float_img 4s ease-in-out infinite;
-  animation-delay: 2s, 3s;
+  animation-delay: 1.4s, 2.8s;
 }
 
 .frame {

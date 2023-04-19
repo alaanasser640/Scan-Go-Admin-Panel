@@ -2,13 +2,12 @@
 
 namespace App\Notifications;
 
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class RegisterAdmin extends Notification
+class LoginAdmin extends Notification
 {
     use Queueable;
 
@@ -69,7 +68,7 @@ class RegisterAdmin extends Notification
             'admin_id' => $this->admin_id,
             'item_name' => $this->item_name,
             'admin_email' => $this->admin_email,
-            'desc' => 'Create new account',
+            'desc' => 'Sign into the panel',
         ];
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Notifications\LoginAdmin;
+use App\Notifications\LogoutAdmin;
 use App\Notifications\RegisterAdmin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,12 +24,12 @@ class RegisterController extends Controller
 
     public function customLogin(Request $request)
     {
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'email' => 'required',
             'password' => 'required',
-            
+
         ]);
-        if($validator->fails()){
+        if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
@@ -35,6 +37,14 @@ class RegisterController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             session()->flash('success', 'You Are Loginned Successfully');
+
+            //notifications
+            $admins = User::where('id', '!=', auth()->user()->id)->get();  //get all admins exept who logined
+            $admin_id = auth()->user()->id;  //get the logined admin id
+            $admin_name = auth()->user()->user_name;  //get the logined admin name
+            $admin_email = auth()->user()->email;  //get the logined admin email
+            Notification::send($admins, new LoginAdmin($admin_id, $admin_id, $admin_name, $admin_email));  //get creation info to notifications
+
             return redirect()->route('dashboard')
                 ->withSuccess('Signed in');
         }
@@ -49,23 +59,25 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'user_name' => 'required|string|',
-            'email' => 'required|string|email|unique:users',
-            'password' => 'required',
-            'phone_number' => 'required|min:11|unique:users',
-            'check' =>'required',
-        ],
-        [
-            'check.required'=> 'You must agree to the terms and conditions',
-        ]
-    );
-        
-        if($validator->fails()){
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'user_name' => 'required|string|',
+                'email' => 'required|string|email|unique:users',
+                'password' => 'required',
+                'phone_number' => 'required|min:11|unique:users',
+                'check' => 'required',
+            ],
+            [
+                'check.required' => 'You must agree to the terms and conditions',
+            ]
+        );
+
+        if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-    
+
         $user = new User();
         $user->user_name = $request->user_name;
         $user->email = $request->email;
@@ -74,15 +86,17 @@ class RegisterController extends Controller
 
         $user->save();
         //dd($validator);
-        
+
         $this->customLogin($request);
-        return redirect()->route('dashboard')->withSuccess('You have signed-in');
 
         //notifications
-        // $admins = User::where('id', '!=', auth()->user()->id)->get();  //get all admins exept who logined
-        // $admin_id = auth()->user()->id;  //get the logined admin username
-        // Notification::send($admins, new RegisterAdmin($user->id, $user->name));  //get creation info to notifications
+        $admins = User::where('id', '!=', auth()->user()->id)->get();  //get all admins exept who logined
+        $admin_id = auth()->user()->id;  //get the logined admin id
+        $admin_name = auth()->user()->user_name;  //get the logined admin name
+        $admin_email = auth()->user()->email;  //get the logined admin email
+        Notification::send($admins, new RegisterAdmin($admin_id, $admin_id, $admin_name, $admin_email));  //get creation info to notifications
 
+        return redirect()->route('dashboard')->withSuccess('You have signed-in');
     }
 
     public function create(array $data)
@@ -95,10 +109,15 @@ class RegisterController extends Controller
         ]);
     }
 
-
-
     public function signOut()
     {
+        // //notifications
+        $admins = User::where('id', '!=', auth()->user()->id)->get();  //get all admins exept who logined
+        $admin_id = auth()->user()->id;  //get the logined admin id
+        $admin_name = auth()->user()->user_name;  //get the logined admin name
+        $admin_email = auth()->user()->email;  //get the logined admin email
+        Notification::send($admins, new LogoutAdmin($admin_id, $admin_id, $admin_name, $admin_email));  //get creation info to notifications
+
         Session::flush();
         Auth::logout();
 

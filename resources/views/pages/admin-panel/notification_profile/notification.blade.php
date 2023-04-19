@@ -81,13 +81,13 @@
                 <span class="badge bg-label-success fs-6" style="text-transform: capitalize;">Addition Process</span>
                 <span class="badge bg-label-info ms-2 fs-6" style="text-transform: capitalize;">Updation Process</span>
                 <span class="badge bg-label-danger ms-2 fs-6" style="text-transform: capitalize;">Deletion Process</span>
-                {{-- <span class="badge bg-label-warning ms-2 fs-6" style="text-transform: capitalize;">Registration Process</span> --}}
+                <span class="badge bg-label-warning ms-2 fs-6" style="text-transform: capitalize;">Sign Up / In</span>
+                <span class="badge bg-label-dark ms-2 fs-6" style="text-transform: capitalize;">Log Out</span>
             </div>
             <div class="justify-content-sm-end d-flex">
                 <a class="btn btn-outline-info table-btn note" href="{{ url('read_all_notification') }}">
                     <span class="tf-icons bx bxs-check-circle" style="margin: -3px 0px 0px -3px;"></span>&nbsp;&nbsp;Mark
-                    all as
-                    read
+                    all as read
                 </a>
                 <form action="{{ url('delete_all_notification') }}" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -123,12 +123,12 @@
                         @endif
 
                         <th scope="row">{{ $id += 1 }}</th>
-                        
+
                         <td>
                             <input type="hidden" name="admin_id" value="{{ $notification->data['admin_id'] }}">
                             {{ $notification->data['admin_email'] }}
                         </td>
-                        
+
                         <td>
                             {{ $notification->data['desc'] }}
                             <span class="text-gray fw-bold">( {{ $notification->data['item_name'] }} )</span>
@@ -136,26 +136,41 @@
 
                         {{-- <td class={{ $notification->type == 'App\Notifications\CreateCategory' ? "bg-secondary" : "" }} {{ $notification->type == 'App\Notifications\UpdateCategory' ? "bg-primary" : ""}}>  --}}
 
-                        @if ($notification->type == 'App\Notifications\CreateCategory' || $notification->type == 'App\Notifications\CreateProduct' || $notification->type == 'App\Notifications\CreateOffer' || $notification->type == 'App\Notifications\CreateAdmin')
+                        @if (
+                            $notification->type == 'App\Notifications\CreateCategory' ||
+                                $notification->type == 'App\Notifications\CreateProduct' ||
+                                $notification->type == 'App\Notifications\CreateOffer' ||
+                                $notification->type == 'App\Notifications\CreateAdmin')
                             <td class="bg-label-success" onclick=" window.location='{{ route('categories.index') }}';"
                                 style="cursor: pointer;">
                                 <span> Add </span>
-
-                        @elseif ($notification->type == 'App\Notifications\UpdateCategory' || $notification->type == 'App\Notifications\UpdateProduct' || $notification->type == 'App\Notifications\UpdateOffer' || $notification->type == 'App\Notifications\UpdateAdmin' || $notification->type == 'App\Notifications\UpdateContact')
+                            @elseif (
+                                $notification->type == 'App\Notifications\UpdateCategory' ||
+                                    $notification->type == 'App\Notifications\UpdateProduct' ||
+                                    $notification->type == 'App\Notifications\UpdateOffer' ||
+                                    $notification->type == 'App\Notifications\UpdateAdmin' ||
+                                    $notification->type == 'App\Notifications\UpdateContact')
                             <td class="bg-label-info">
                                 <span> Update </span>
 
-                        @elseif ($notification->type == 'App\Notifications\DestroyCategory' || $notification->type == 'App\Notifications\DestroyProduct' || $notification->type == 'App\Notifications\DestroyOffer' || $notification->type == 'App\Notifications\DestroyCustomer' || $notification->type == 'App\Notifications\DestroyAdmin' || $notification->type == 'App\Notifications\DestroyContact')   
+                            @elseif (
+                                $notification->type == 'App\Notifications\DestroyCategory' ||
+                                    $notification->type == 'App\Notifications\DestroyProduct' ||
+                                    $notification->type == 'App\Notifications\DestroyOffer' ||
+                                    $notification->type == 'App\Notifications\DestroyCustomer' ||
+                                    $notification->type == 'App\Notifications\DestroyAdmin' ||
+                                    $notification->type == 'App\Notifications\DestroyContact')
                             <td class="bg-label-danger">
                                 <span> Delete </span>
-                        @else
-                            <td>
-                                <span> Other </span>
+
+                            @elseif ($notification->type == 'App\Notifications\LogoutAdmin')
+                            <td class="bg-label-dark">
+                                <span> Log Out </span>
+
+                            @elseif ($notification->type == 'App\Notifications\RegisterAdmin' || $notification->type == 'App\Notifications\LoginAdmin')
+                            <td class="bg-label-warning">
+                                <span> Sign Up / In </span>
                         @endif
-                        {{-- {{ $notification->type }} --}}
-                        {{-- {{ $notification->type == 'App\Notifications\CreateCategory' ? 'Addition Process' : '' }}
-                            {{ $notification->type == 'App\Notifications\UpdateCategory' ? 'Updation Process' : '' }}
-                            {{ $notification->type == 'App\Notifications\DestroyCategory' ? 'Deletion Process' : '' }} --}}
                         </td>
 
 

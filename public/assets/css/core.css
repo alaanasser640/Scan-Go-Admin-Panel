@@ -18486,14 +18486,21 @@ html:not(.layout-footer-fixed) .content-wrapper {
   animation-delay: 2s, 3s;
 }
 
-.frame{
+.frame {
   opacity: 0;
   animation: zoom_in 1s ease forwards;
 }
 
-.frame-img{
-  animation:float_img 4s ease-in-out infinite;
+.frame-img {
+  animation: float_img 4s ease-in-out infinite;
 }
+
+.error-img {
+  animation: zoom_in 1s ease forwards, float_img 4s ease-in-out infinite;
+  animation-delay: 0s, 1s;
+}
+
+
 @keyframes scale_img {
   50% {
     transform: scale(1.1);
@@ -18577,3 +18584,4 @@ html:not(.layout-footer-fixed) .content-wrapper {
   }
 
 }
+

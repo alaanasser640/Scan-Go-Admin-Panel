@@ -130,6 +130,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
+                <?php use App\Models\Contact; ?>
+                @if (Contact::exists()) 
+                
                 <form action="{{ route('contacts.update', $contact->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
@@ -171,6 +174,8 @@
                     </div>
 
                 </form>
+
+                @endif
             </div>
         </div>
     </div>

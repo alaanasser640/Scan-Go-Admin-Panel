@@ -159,7 +159,8 @@
                                     $notification->type == 'App\Notifications\DestroyOffer' ||
                                     $notification->type == 'App\Notifications\DestroyCustomer' ||
                                     $notification->type == 'App\Notifications\DestroyAdmin' ||
-                                    $notification->type == 'App\Notifications\DestroyContact')
+                                    $notification->type == 'App\Notifications\DestroyContact' ||
+                                    $notification->type == 'App\Notifications\DestroyReceipt')
                             <td class="bg-label-danger">
                                 <span> Delete </span>
 

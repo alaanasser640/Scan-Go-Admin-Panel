@@ -58,8 +58,8 @@
                 {{-- <div class="py-3 mb-4">
                     <a href="{{ route('contacts.create') }}" type="button" class="btn btn-primary">
                         <i class="bx bx-plus"></i> &nbsp; Add New Contact
-                    </a>
-                </div> --}}
+                    </a> --}}
+                </div>
             </div>
             <!-- / Page header -->
 

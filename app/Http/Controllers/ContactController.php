@@ -86,33 +86,33 @@ class ContactController extends Controller
 
 
     //add new contact page
-    // public function create()
-    // {
-    //     $customers = Customer::all();
-    //     return view('pages.admin-panel.contact.add_contact', [
-    //         'customers' => $customers
-    //     ]);
-    // }
+    public function create()
+    {
+        $customers = Customer::all();
+        return view('pages.admin-panel.contact.add_contact', [
+            'customers' => $customers
+        ]);
+    }
 
     //display contact from database function
-    // public function store(Request $request)
-    // {
-    //     $validator = Validator::make($request->all(), [
-    //         'customer_id' => 'required',
-    //         'message' => 'required',
-    //         'status' => 'required',
-    //     ]);
-    //     if ($validator->fails()) {
-    //         return redirect()->back()->withErrors($validator->errors());
-    //     }
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'customer_id' => 'required',
+            'message' => 'required',
+            'status' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator->errors());
+        }
 
-    //     $contact = new contact();
-    //     $contact->customer_id = $request->customer_id;
-    //     $contact->message = $request->message;
-    //     $contact->status = $request->status;
+        $contact = new contact();
+        $contact->customer_id = $request->customer_id;
+        $contact->message = $request->message;
+        $contact->status = $request->status;
 
-    //     $contact->save();
+        $contact->save();
 
-    //     return redirect()->route('contacts.index')->with('message', 'Contact has added successfully');
-    // }
+        return redirect()->route('contacts.index')->with('message', 'Contact has added successfully');
+    }
 }

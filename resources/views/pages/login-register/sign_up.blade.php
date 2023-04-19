@@ -88,12 +88,14 @@
                             </div>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-3 form-password-toggle">
                             <div class="col-sm-11">
                                 <div class="input-group input-group-merge">
                                     <span class="input-group-text"><i class="bx bx-lock"></i></span>
-                                    <input type="password" class="form-control" placeholder="Password"  name="password"/>
-                                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                    <input type="password" id="pass_input" class="form-control" placeholder="Password"  name="password"/>
+                                    <span class="input-group-text cursor-pointer">
+                                        <i class="bx bx-hide" id="pass_icon"></i>
+                                    </span>
                                 </div>
                             </div>
                         </div>

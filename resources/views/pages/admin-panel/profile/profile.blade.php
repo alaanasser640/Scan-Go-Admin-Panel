@@ -104,11 +104,14 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="row mb-3 form-password-toggle">
                     <label class="col-sm-2 col-form-label">Password</label>
                     <div class="col-sm-10">
                         <div class="input-group input-group-merge">
-                            <input type="password" class="form-control" placeholder="*******" required />
+                            <input type="password" id="pass_input" class="form-control" placeholder="*******" required />
+                            <span class="input-group-text cursor-pointer">
+                                <i class="bx bx-hide" id="pass_icon"></i>
+                            </span>
                         </div>
                     </div>
                 </div>

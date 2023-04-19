@@ -1,22 +1,21 @@
 @extends('pages.login-register.layout_2')
 
-    
+
 @section('title')
     Login
-
 @endsection
 @if ($errors->any())
-        <div class="alert alert-danger alert-dismissible" style="margin: 20;">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
+    <div class="alert alert-danger alert-dismissible" style="margin: 20;">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
 
-    @if(session()->has('error'))
+@if (session()->has('error'))
     <div class="alert alert-danger alert-dismissible" style="margin: 20;">
         {{ session()->get('error') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -51,23 +50,26 @@
 
                         <br>
                         {{-- Form --}}
-                        <form action="{{route('login.custom')}}" method="post">
-@csrf
+                        <form action="{{ route('login.custom') }}" method="post">
+                            @csrf
                             <div class="mb-3">
                                 <div class="col-sm-11">
                                     <div class="input-group input-group-merge">
                                         <span class="input-group-text"><i class="bx bx-envelope"></i></span>
-                                        <input type="email" class="form-control" placeholder="Email"  name="email" />
+                                        <input type="email" class="form-control" placeholder="Email" name="email" />
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-3 form-password-toggle">
                                 <div class="col-sm-11">
                                     <div class="input-group input-group-merge">
                                         <span class="input-group-text"><i class="bx bx-lock"></i></span>
-                                        <input type="password" class="form-control" placeholder="Password"  name="password"/>
-                                        <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                        <input type="password" id="pass_input" class="form-control" placeholder="Password"
+                                            name="password" />
+                                        <span class="input-group-text cursor-pointer">
+                                            <i class="bx bx-hide" id="pass_icon"></i>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -115,4 +117,42 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    {{-- <script>
+        function initPasswordToggle() {
+            var toggler = document.querySelectorAll('.form-password-toggle i');
+            if (typeof toggler !== 'undefined' && toggler !== null) {
+                toggler.forEach(function(el) {
+                    el.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        var formPasswordToggle = el.closest('.form-password-toggle');
+                        var formPasswordToggleIcon = formPasswordToggle.querySelector('i');
+                        var formPasswordToggleInput = formPasswordToggle.querySelector('input');
+
+                        if (formPasswordToggleInput.getAttribute('type') === 'text') {
+                            formPasswordToggleInput.setAttribute('type', 'password');
+                            formPasswordToggleIcon.classList.replace('bx-show', 'bx-hide');
+                        } else if (formPasswordToggleInput.getAttribute('type') === 'password') {
+                            formPasswordToggleInput.setAttribute('type', 'text');
+                            formPasswordToggleIcon.classList.replace('bx-hide', 'bx-show');
+                        }
+                    });
+
+                });
+            }
+        }
+        const togglePassword = document.querySelector("#togglePassword");
+        const password = document.querySelector("#password");
+
+        togglePassword.addEventListener("click", function() {
+            // toggle the type attribute
+            const type = password.getAttribute("type") === "password" ? "text" : "password";
+            password.setAttribute("type", type);
+
+            // toggle the icon
+            this.classList.replace('bx-hide', 'bx-show');;
+        });
+    </script> --}}
 @endsection

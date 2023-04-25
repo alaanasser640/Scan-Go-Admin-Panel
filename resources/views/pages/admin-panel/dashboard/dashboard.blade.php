@@ -6,7 +6,7 @@
 
 @section('search_bar')
     <!-- Search -->
-    <form action="" method="GET" accept-charset="UTF-8" role="search" style="width:80%;">
+    <form action="" method="GET" accept-charset="UTF-8" class="seacrh-bar" role="search" style="width:80%;">
         <div class="table-search d-flex align-items-center">
             <i class="bx bx-search fs-4 lh-0"></i>
             <input type="text" class="form-control border-0 shadow-none" name="search" value="{{ request('search') }}"
@@ -191,7 +191,7 @@
     </div>
 
     <!-- Charts -->
-    <div class="row" style="margin-top: -440px;">
+    <div class="row mt-n33" >
 
         <!-- Receipts Statistics -->
         <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">

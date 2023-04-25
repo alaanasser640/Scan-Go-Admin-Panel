@@ -25,7 +25,7 @@
 
             {{-- Image --}}
             <div class="col-md-6  left-box">
-                <div class="px-5 frame-img">
+                <div class="px-5 sign-img">
                     <img class="card-img card-img-left" src="{{ asset('assets/images/illustrations/sign up.png') }}" alt="Card image">
                 </div>
                 <div class="row">
@@ -106,7 +106,7 @@
                             </div>
 
                         <br><br>
-                        <div class="row">
+                        <div class="row ">
                             <div class="col-sm-11 d-grid">
                                 <button type="submit" class="btn btn-primary">SIGN UP</button>
                             </div>

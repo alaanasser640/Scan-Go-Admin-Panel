@@ -66,6 +66,7 @@
   }
 }
 
+
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);
@@ -7303,7 +7304,7 @@ label.btn {
   color: #fff;
   background-color: #ffab00;
   border-color: #ffab00;
-  box-shadow: 0 0.125rem 0.25rem 0 rgba(255, 171, 0, 0.4);
+  box-shadow: 0 0.125rem 0.25rem 0 rgba(255, 171, 0, 0.45);
 }
 
 .btn-primary:hover {
@@ -10870,6 +10871,10 @@ button.list-group-item-gray.active {
 
 .mt-n5 {
   margin-top: -3rem !important;
+}
+
+.mt-n33 {
+  margin-top: -33rem !important;
 }
 
 .mb-n1 {
@@ -14971,6 +14976,7 @@ button.list-group-item-gray.active {
   transform: scaleY(-1) !important;
 }
 
+
 @media (min-width: 576px) {
   .float-sm-start {
     float: left !important;
@@ -16646,13 +16652,13 @@ html:not(.layout-menu-fixed) .menu-inner-shadow {
 
 @media (max-width: 1199.98px) {
   .layout-navbar.navbar-detached {
-    width: calc(100vw - (100vw - 100%) - (1.625rem * 2)) !important;
+    width: calc(105vw - (100vw - 100%) - (1.625rem * 2)) !important;
   }
 }
 
 @media (max-width: 991.98px) {
   .layout-navbar.navbar-detached {
-    width: calc(100vw - (100vw - 100%) - (1rem * 2)) !important;
+    width: calc(105vw - (100vw - 100%) - (1rem * 2)) !important;
   }
 }
 
@@ -18491,7 +18497,9 @@ html:not(.layout-footer-fixed) .content-wrapper {
   animation: zoom_in 1s ease forwards;
 }
 
-.frame-img {
+.login-img,
+.sign-img,
+.pass-img {
   animation: float_img 4s ease-in-out infinite;
 }
 
@@ -18585,3 +18593,154 @@ html:not(.layout-footer-fixed) .content-wrapper {
 
 }
 
+@media (max-width: 1500px) {
+  /* .seacrh-bar {
+    max-width: 90% !important;
+    margin-left: 0px !important;
+    margin-right: 30px !important;
+  } */
+}
+
+@media (min-width: 1400px) {
+  .card-img-left {
+    margin-top: 0px !important;
+  }
+
+  .login-form-bottom {
+    margin-bottom: 8rem !important;
+  }
+
+}
+
+@media (max-width: 1200px) {
+  /* .seacrh-bar {
+    max-width: 75% !important;
+    margin-left: 0px !important;
+    margin-right: 30px !important;
+  } */
+}
+
+@media (min-width: 1200px) {
+
+  .frame {
+    width: 75% !important;
+  }
+
+  .left-box {
+    border-radius: 0px 15px 15px 0px !important;
+  }
+
+  .right-box {
+    border-radius: 15px 0px 0px 15px !important;
+  }
+
+  .card-img-left {
+    margin-top: 50px;
+  }
+
+  
+
+}
+
+@media (max-width: 992px) {
+  /* .seacrh-bar {
+    max-width: 75% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  } */
+}
+
+@media (min-width: 992px) {
+
+  .login-form {
+    margin-top: 6rem !important;
+  }
+
+  .sign-img {
+    margin-top: 0px !important;
+  }
+
+  .navbar-example {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+  }
+
+
+}
+
+@media (min-width: 768px) {
+
+
+  .frame {
+    width: 105%;
+  }
+
+  .sign-img {
+    margin-top: 100px;
+  }
+
+  .login-img .pass-img {
+    margin-top: 15px !important;
+  }
+
+  .right-box {
+    border-radius: 0px 15px 15px 0px !important;
+  }
+
+  .left-box {
+    border-radius: 15px 0px 0px 15px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* .seacrh-bar {
+    max-width: 65% !important;
+    margin-left: auto;
+    margin-right: auto;
+  } */
+}
+
+@media (min-width: 375px) {
+
+  /* .seacrh-bar {
+    max-width: 35%;
+    margin-left: auto;
+    margin-right: auto;
+  } */
+
+  .navbar-example {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+  }
+
+  .navbar-collapse {
+    margin: 12px;
+  }
+
+  .btn-form {
+    padding-top: 12px;
+  }
+
+  .landing-img-div {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .card {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .login-form {
+    margin-top: 3rem;
+  }
+
+  .right-box {
+    border-radius: 0px 0px 15px 15px;
+  }
+
+  .left-box {
+    border-radius: 15px 15px 0px 0px;
+  }
+}

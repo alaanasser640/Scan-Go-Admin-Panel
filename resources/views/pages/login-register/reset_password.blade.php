@@ -33,7 +33,7 @@
                         {{-- Form --}}
                         <form action="" method="">
 
-                            <div class="mb-3">
+                            <div class="mb-3 login-form-bottom">
                                 <div class="col-sm-11">
                                     <div class="input-group input-group-merge">
                                         <span class="input-group-text"><i class="bx bx-envelope"></i></span>
@@ -42,10 +42,8 @@
                                 </div>
                             </div>
 
-                            <br><br>
-                            <br><br>
-                            <br><br>
-                            <div class="row">
+
+                            <div class="row login-form">
                                 <div class="col-sm-11 d-grid">
                                     <button type="submit" class="btn btn-primary">Send Reset Link</button>
                                     <br>
@@ -61,14 +59,18 @@
 
                 {{-- Image --}}
                 <div class="col-md-6  right-box">
-                    <div class="px-5 frame-img">
-                        <img class="card-img card-img-left" src="{{ asset('assets/images/illustrations/reset password.png') }}"
-                            alt="Card image">
+                    <div class="px-5 pass-img">
+                        <img class="card-img card-img-left"
+                            src="{{ asset('assets/images/illustrations/reset password.png') }}" alt="Card image">
                     </div>
                     <div class="row">
-                        <a class="fw-semibold text-secondary d-flex align-items-center justify-content-center" href="{{ url('/log_in') }}">
-                        <i class="bx bx-chevron-left bx-sm"></i>Back To Login
-                    </a>
+                        <span class="fs-5 mb-4">
+                            <a class="text-secondary d-flex align-items-center justify-content-center"
+                                href="{{ url('/log_in') }}">
+                                <i class="bx bx-chevron-left bx-sm"></i>Back To 
+                                <span class="fw-semibold text-primary">&nbsp;Login</span>
+                            </a>
+                        </span>
                     </div>
                 </div>
                 {{-- / Image --}}

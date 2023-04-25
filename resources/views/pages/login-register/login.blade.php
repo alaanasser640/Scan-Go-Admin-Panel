@@ -74,7 +74,7 @@
                                 </div>
                             </div>
 
-                            <div class="d-flex justify-content-between col-sm-11">
+                            <div class="d-flex justify-content-between col-sm-11 login-form-bottom">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="remember-me" />
                                     <label class="form-check-label" for="remember-me">Keep me signed in </label>
@@ -84,10 +84,8 @@
                                 </a>
                             </div>
 
-                            <br><br>
-                            <br><br>
-                            <br><br>
-                            <div class="row">
+                            
+                            <div class="row login-form">
                                 <div class="col-sm-11 d-grid">
                                     <button type="submit" class="btn btn-primary">LOGIN</button>
                                 </div>
@@ -100,8 +98,8 @@
                 </div>
 
                 {{-- Image --}}
-                <div class="col-md-6  right-box">
-                    <div class="px-5 frame-img">
+                <div class="col-md-6 right-box">
+                    <div class="px-5 login-img">
                         <img class="card-img card-img-left" src="{{ asset('assets/images/illustrations/sign in.png') }}"
                             alt="Card image">
                     </div>

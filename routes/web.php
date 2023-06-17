@@ -10,6 +10,7 @@ use App\Http\Controllers\ReceiptController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,9 @@ Route::resource('contacts', ContactController::class);
 
 //Admin
 Route::resource('admins', AdminController::class);
+
+//Profile
+Route::resource('profile', ProfileController::class);
 
 // Cutomers
 Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
@@ -72,9 +76,9 @@ Route::post('delete_all_notification',[NotificationController::class, 'delete_al
 
 
 
-Route::get('/profile', function () {
-    return view('pages.admin-panel.profile.profile');
-});
+// Route::get('/profile', function () {
+//     return view('pages.admin-panel.profile.profile');
+// });
 
 Route::get('/receipts', function () {
     return view('pages.admin-panel.receipts.receipts');

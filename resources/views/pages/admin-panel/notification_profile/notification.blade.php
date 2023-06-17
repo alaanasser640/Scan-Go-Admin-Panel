@@ -8,7 +8,7 @@
 
 @section('search_bar')
     <!-- Search -->
-    <form action="{{ route('notifications.index') }}" method="GET" accept-charset="UTF-8" role="search" style="width:80%;">
+    <form action="{{ route('notifications.index') }}" method="GET" accept-charset="UTF-8" role="search" style="width:380%;">
         <div class="table-search d-flex align-items-center">
             <i class="bx bx-search fs-4 lh-0"></i>
             <input type="text" class="form-control border-0 shadow-none" name="search" value="{{ request('search') }}"
@@ -50,7 +50,7 @@
     <div>
         <ul class="nav nav-pills flex-column flex-md-row mb-3">
             <li class="nav-item">
-                <a class="nav-link" href="{{ url('/profile') }}">
+                <a class="nav-link" href="{{ route('profile.index') }}">
                     <i class="bx bx-user" style="margin: -3px 0px 0px -3px;"></i>&nbsp;&nbsp;Profile
                 </a>
             </li>

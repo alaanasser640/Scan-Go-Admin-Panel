@@ -6,7 +6,7 @@
 
 @section('search_bar')
     <!-- Search -->
-    <form action="" method="GET" accept-charset="UTF-8" class="seacrh-bar" role="search" style="width:80%;">
+    <form action="" method="GET" accept-charset="UTF-8" class="seacrh-bar" role="search" style="width:380%;">
         <div class="table-search d-flex align-items-center">
             <i class="bx bx-search fs-4 lh-0"></i>
             <input type="text" class="form-control border-0 shadow-none" name="search" value="{{ request('search') }}"
@@ -39,12 +39,12 @@
 
     <!-- Success message alert -->
 
-    @if(session()->has('success'))
-    <div class="alert alert-success alert-dismissible">
-        {{ session()->get('success') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
+    @if (session()->has('success'))
+        <div class="alert alert-success alert-dismissible">
+            {{ session()->get('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
 
     <!-- Message alert -->
     @if (session()->has('message'))
@@ -55,7 +55,7 @@
     @endif
     <div class="row">
         <!-- Welcome card -->
-        <div class="col-lg-8 mb-4 order-0">
+        <div class="col-lg-12 order-0">
             <div class="card">
                 <div class="d-flex align-items-end row">
                     <div class="col-sm-7">
@@ -64,15 +64,17 @@
                                 <span class="fw-bold text-secondary">{{ Auth::user()->user_name }}</span> 🎉
                             </h4>
                             <p class="mb-4">
-                                <i class="bx bx-calendar"></i> 
+                                <i class="bx bx-calendar"></i>
                                 <span class="">Last update at:</span>
                                 {{-- <span class="text-muted">&nbsp;30/4/2023 | 08:30 PM</span> --}}
-                                <span class="text-muted">&nbsp;{{ Auth::user()->updated_at->format('d/m/Y') }} | {{  Auth::user()->updated_at->format('h:i') }}</span>
+                                <span class="text-muted">&nbsp;{{ Auth::user()->updated_at->format('d/m/Y') }} |
+                                    {{ Auth::user()->updated_at->format('h:i') }}</span>
                             </p>
-                            <a href="{{ url('/profile') }}" class="btn btn-sm btn-outline-warning"
+                            <a href="{{ route('profile.index') }}" class="btn btn-sm btn-outline-warning"
                                 style="width:35%;font-size: 0.9rem;">View Profile</a>
                         </div>
                     </div>
+
                     <div class="col-sm-5 text-center text-sm-left">
                         <div class="card-body pb-0 px-0 px-md-4">
                             <img src="{{ asset('assets/images/illustrations/man-with-laptop-green.png') }}" height="140"
@@ -86,11 +88,10 @@
         <!-- /Welcome card -->
 
         <!-- Cards -->
-        <div class="col-lg-4 col-md-4 order-1">
+        <div class="col-lg-12 order-1">
             <div class="row">
-
                 <!-- Category card -->
-                <div class="col-6 mb-4">
+                <div class="col-4">
                     <div class="card">
                         <div class="card-body">
                             <div class="card-title d-flex align-items-start justify-content-between">
@@ -106,7 +107,7 @@
                 </div>
 
                 <!-- Product card -->
-                <div class="col-6 mb-4">
+                <div class="col-4">
                     <div class="card">
                         <div class="card-body">
                             <div class="card-title d-flex align-items-start justify-content-between">
@@ -122,7 +123,7 @@
                 </div>
 
                 <!-- offers card -->
-                <div class="col-6 mb-4">
+                <div class="col-4">
                     <div class="card">
                         <div class="card-body">
                             <div class="card-title d-flex align-items-start justify-content-between">
@@ -137,8 +138,11 @@
                     </div>
                 </div>
 
+            </div>
+            
+            <div class="row">
                 <!-- Receipts card -->
-                <div class="col-6 mb-4">
+                <div class="col-4 mb-2">
                     <div class="card">
                         <div class="card-body">
                             <div class="card-title d-flex align-items-start justify-content-between">
@@ -154,7 +158,7 @@
                 </div>
 
                 <!-- Customers card -->
-                <div class="col-6 mb-4">
+                <div class="col-4 mb-2">
                     <div class="card">
                         <div class="card-body">
                             <div class="card-title d-flex align-items-start justify-content-between">
@@ -170,7 +174,7 @@
                 </div>
 
                 <!-- Admins card -->
-                <div class="col-6 mb-4">
+                <div class="col-4 mb-2">
                     <div class="card">
                         <div class="card-body">
                             <div class="card-title d-flex align-items-start justify-content-between">
@@ -190,11 +194,16 @@
         <!-- /Cards -->
     </div>
 
-    <!-- Charts -->
-    <div class="row mt-n33" >
 
-        <!-- Receipts Statistics -->
-        <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
+
+
+
+
+    <!-- Charts -->
+    {{-- <div class="row mt-n33" > --}}
+
+    <!-- Receipts Statistics -->
+    {{-- <div class="col-md-6 col-lg-4 col-xl-4 order-0 mb-4">
             <div class="card h-100">
 
                 <div class="card-header d-flex align-items-center justify-content-between pb-0">
@@ -269,11 +278,11 @@
                 </div>
 
             </div>
-        </div>
-        <!--/ Receipts Statistics -->
+        </div> --}}
+    <!--/ Receipts Statistics -->
 
-        <!-- Best Selling Statistics -->
-        <div class="col-md-6 col-lg-4 order-1 mb-4">
+    <!-- Best Selling Statistics -->
+    {{-- <div class="col-md-6 col-lg-4 order-1 mb-4">
             <div class="card h-100">
                 <div class="card-header">
                     <div class="card-title mb-0">
@@ -286,7 +295,7 @@
                         <div class="tab-pane fade show active mt-5" id="navs-tabs-line-card-income" role="tabpanel">
                             <div id="sellingChart"></div>
                             <!-- Expenses Of Week -->
-                            {{-- <div class="d-flex justify-content-center pt-4 gap-2">
+                            <div class="d-flex justify-content-center pt-4 gap-2">
                                 <div class="flex-shrink-0">
                                     <div id="expensesOfWeek"></div>
                                 </div>
@@ -294,15 +303,15 @@
                                     <p class="mb-n1 mt-1">Expenses This Week</p>
                                     <small class="text-muted">$39 less than last week</small>
                                 </div>
-                            </div> --}}
+                            </div>
                             <!-- / Expenses Of Week -->
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!--/ Best Selling Statistics -->
+        </div> --}}
+    <!--/ Best Selling Statistics -->
 
-    </div>
+    {{-- </div> --}}
     <!-- /Charts -->
 @endsection

@@ -82,6 +82,7 @@ class RegisterController extends Controller
         $user->user_name = $request->user_name;
         $user->email = $request->email;
         $user->phone_number = $request->phone_number;
+        $user->image = 'default-avatar.png';
         $user->password = Hash::make($request->password);
 
         $user->save();

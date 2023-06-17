@@ -7,7 +7,7 @@
 @section('search_bar')
 
     <!-- Search -->
-    <form action="" method="GET" accept-charset="UTF-8" role="search" style="width:80%;">
+    <form action="" method="GET" accept-charset="UTF-8" role="search" style="width:380%;">
         <div class="table-search d-flex align-items-center">
             <i class="bx bx-search fs-4 lh-0"></i>
             <input type="text" class="form-control border-0 shadow-none" name="search" value="{{ request('search') }}"
@@ -65,7 +65,7 @@
                             <th scope="row">{{{$id+=1}}}</th>
                             @if($customer->image == "")
                             <td>
-                            <img src="images/sara.jpg" class="img-category" alt="image" />
+                            <img src="{{ asset('assets/images/avatars/pic-1.png') }}" class="rounded-circle img-user" alt="image" />
                             </td>
                             @endif
                             @if($customer->image != "")

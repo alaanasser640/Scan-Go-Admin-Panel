@@ -18,7 +18,7 @@
                                 <span class="app-brand-logo demo">
                                     <img src="{{ asset('assets/images/logos/orango mini logo.png') }}" />
                                 </span>
-                                <span class="font-family app-brand-text demo text-body fw-bolder text-primary">OranGo</span>
+                                <span class="font-family app-brand-text demo text-body fw-bolder text-primary">Scan2Go</span>
                             </a>
                         </div>
                         <!-- /Logo -->

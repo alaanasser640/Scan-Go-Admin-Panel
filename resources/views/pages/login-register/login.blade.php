@@ -37,7 +37,7 @@
                                 <span class="app-brand-logo demo">
                                     <img src="{{ asset('assets/images/logos/orango mini logo.png') }}" />
                                 </span>
-                                <span class="font-family app-brand-text demo text-body fw-bolder text-primary">OranGo</span>
+                                <span class="font-family app-brand-text demo text-body fw-bolder text-primary">Scan2Go</span>
                             </a>
                         </div>
                         <!-- /Logo -->
@@ -74,7 +74,7 @@
                                 </div>
                             </div>
 
-                            <div class="d-flex justify-content-between col-sm-11 login-form-bottom">
+                            {{-- <div class="d-flex justify-content-between col-sm-11 login-form-bottom">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="remember-me" />
                                     <label class="form-check-label" for="remember-me">Keep me signed in </label>
@@ -82,9 +82,11 @@
                                 <a href="{{ url('/reset_password') }}">
                                     <small>Forgot Password?</small>
                                 </a>
-                            </div>
+                            </div> --}}
 
-                            
+                            <br>
+                            <br>
+                            <br>
                             <div class="row login-form">
                                 <div class="col-sm-11 d-grid">
                                     <button type="submit" class="btn btn-primary">LOGIN</button>

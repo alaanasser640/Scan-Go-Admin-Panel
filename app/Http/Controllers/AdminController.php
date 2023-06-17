@@ -18,8 +18,6 @@ class AdminController extends Controller
 {
     public function index(Request $request)
     {
-
-
         //search function
         $keyword = $request->get('search');
         if (!empty($keyword)) {
@@ -35,7 +33,7 @@ class AdminController extends Controller
         ]);
     }
 
-    //add new category page
+    //add new admin page
     public function create()
     {
         return view('pages.admin-panel.admins.add_admin');
@@ -50,7 +48,7 @@ class AdminController extends Controller
         ]);
     }
 
-    //delete category page
+    //delete admin page
     public function show($id)
     {
         $admin = User::findOrFail($id);
@@ -59,7 +57,7 @@ class AdminController extends Controller
         ]);
     }
 
-    //display categories from database function
+    //display admins from database function
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -93,7 +91,7 @@ class AdminController extends Controller
         return redirect()->route('admins.index')->with('message', 'Admin has added successfully');
     }
 
-    //edit category in database function
+    //edit admin in database function
     public function update(Request $request, User $admin)
     {
         $validator = Validator::make($request->all(), [
@@ -130,7 +128,7 @@ class AdminController extends Controller
         return redirect()->route('admins.index')->with('message', 'Admin has updated successfully');
     }
 
-    //delete category from database function
+    //delete admin from database function
     public function destroy($id)
     {
         $admin = User::findOrFail($id);

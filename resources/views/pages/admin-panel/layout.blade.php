@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <title>OranGo - @yield('title')</title>
+    <title>Scan2Go - @yield('title')</title>
     <meta name="description" content="" />
 
     {{-- Logo icon --}}
@@ -45,12 +45,12 @@
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
 
                 <!-- Logo -->
-                <div class="app-brand demo" >
+                <div class="app-brand demo">
                     <a href="{{ route('dashboard') }}" class="app-brand-link">
                         <span class="app-brand-logo demo">
                             <img src="{{ asset('assets/images/logos/orango mini logo.png') }}">
                         </span>
-                        <span class="font-family app-brand-text demo menu-text fw-bolder ms-3">OranGo</span>
+                        <span class="font-family app-brand-text demo menu-text fw-bolder ms-3">Scan2Go</span>
                     </a>
 
                     <a href="javascript:void(0);"
@@ -229,44 +229,51 @@
                 <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
                     id="layout-navbar">
 
-                    
-                    <div class="navbar-nav-right d-flex align-items-center justify-content-between" id="navbar-collapse">
-                        
+
+                    <div class="navbar-nav-right d-flex align-items-center justify-content-between"
+                        id="navbar-collapse">
+
                         <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
                             <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
                                 <i class="bx bx-menu bx-sm"></i>
                             </a>
                         </div>
-    
+
                         <!-- Search -->
                         <div>
-                        @yield('search_bar')
+                            @yield('search_bar')
                         </div>
                         <!-- /Search -->
 
 
                         <!-- User / Notifications -->
                         <div>
-                        <ul class="navbar-nav flex-row align-items-center ms-auto">
+                            <ul class="navbar-nav flex-row align-items-center ms-auto">
 
-                            <li>
-                                <a class="nav-link" href="{{ url('/profile') }}" style="margin-right: 10px;">
-                                    <img src="images/{{ Auth::user()->image }}"
-                                        class="w-px-40 h-auto rounded-circle box-shadow" data-bs-toggle="tooltip"
-                                        data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true"
-                                        data-bs-original-title="Profile" />
-                                </a>
-                            </li>
+                                <li>
+                                    <a class="nav-link" href="{{ route('profile.index') }}"
+                                        style="margin-right: 10px;">
 
-                            <li data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom"
-                                data-bs-html="true" data-bs-original-title="Notifications">
-                                @if (Auth::user()->unreadNotifications->count() > 0)
-                                    <span class="badge badge-center rounded-pill bg-primary notify-count">
-                                        {{ Auth::user()->unreadNotifications->count() }}
-                                    </span>
-                                @endif
+                                        
 
-                                    <a class="" href="{{ route('notifications.index') }}" {{-- data-bs-toggle="dropdown" aria-expanded="true" --}}>
+                                        <img src="{{ file_exists(public_path('images/' . Auth::user()->image)) ? asset('images/' . Auth::user()->image) : asset('assets/images/avatars/pic-4.png') }}"
+                                            class="w-px-40 h-auto rounded-circle box-shadow" data-bs-toggle="tooltip"
+                                            data-bs-offset="0,4" data-bs-placement="bottom" data-bs-html="true"
+                                            data-bs-original-title="Profile" />
+
+                                    </a>
+                                </li>
+
+                                <li data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom"
+                                    data-bs-html="true" data-bs-original-title="Notifications">
+                                    @if (Auth::user()->unreadNotifications->count() > 0)
+                                        <span class="badge badge-center rounded-pill bg-primary notify-count">
+                                            {{ Auth::user()->unreadNotifications->count() }}
+                                        </span>
+                                    @endif
+
+                                    <a class="" href="{{ route('notifications.index') }}"
+                                        {{-- data-bs-toggle="dropdown" aria-expanded="true" --}}>
                                         <i class="bx bxs-bell fs-4 navbar-icon"></i>
                                     </a>
 
@@ -279,16 +286,16 @@
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="{{ route('notifications.index') }}">View All</a></li>
                                 </ul> --}}
-                            </li>
+                                </li>
 
-                            <li data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom"
-                                data-bs-html="true" data-bs-original-title="Log Out">
-                                <a class="" href="{{ url('/sign-out') }}">
-                                    <i class="bx bx-log-out-circle fs-4 navbar-icon"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                                <li data-bs-toggle="tooltip" data-bs-offset="0,4" data-bs-placement="bottom"
+                                    data-bs-html="true" data-bs-original-title="Log Out">
+                                    <a class="" href="{{ url('/sign-out') }}">
+                                        <i class="bx bx-log-out-circle fs-4 navbar-icon"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                         <!--/ User / Notifications -->
 
                     </div>

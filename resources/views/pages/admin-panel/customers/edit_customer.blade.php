@@ -6,7 +6,7 @@
 
 @section('search_bar')
     <!-- Search -->
-    <div class="table-search-disabled d-flex align-items-center">
+    <div class="table-search-disabled d-flex align-items-center" style="width:400%;">
         <i class="bx bx-search fs-4 lh-0"></i> 
         <input type="text" class="form-control border-0 shadow-none" placeholder="Search..." aria-label="Search..." disabled/>
     </div>

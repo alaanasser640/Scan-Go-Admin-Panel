@@ -6,7 +6,7 @@
 
 @section('search_bar')
     <!-- Search -->
-    <form action="{{ route('admins.index') }}" method="GET" accept-charset="UTF-8" role="search" style="width:80%;">
+    <form action="{{ route('admins.index') }}" method="GET" accept-charset="UTF-8" role="search" style="width:380%;">
         <div class="table-search d-flex align-items-center">
             <i class="bx bx-search fs-4 lh-0"></i>
             <input type="text" class="form-control border-0 shadow-none" name="search" value="{{ request('search') }}"
@@ -96,7 +96,7 @@
                             </td>
                             @endif    
                             <td>{{{$admin->user_name}}}</td>
-                            <td>{{{$admin->phone}}}</td>
+                            <td>{{{$admin->phone_number}}}</td>
                             <td>{{{$admin->email}}}</td>
                             <td>{{{$admin->updated_at}}}</td>
                             <td>

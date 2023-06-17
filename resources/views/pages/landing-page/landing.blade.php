@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <title>OranGo - Get Started</title>
+    <title>Scan2Go - Get Started</title>
     <meta name="description" content="" />
 
     {{-- Logo icon --}}
@@ -52,7 +52,7 @@
                                 <span class="app-brand-logo demo">
                                     <img src="{{ asset('assets/images/logos/orango mini logo.png') }}">
                                 </span>
-                                <span class="font-family app-brand-text demo menu-text fw-bolder ms-3">OranGo</span>
+                                <span class="font-family app-brand-text demo menu-text fw-bolder ms-3">Scan2Go</span>
                             </a>
                         </div>
 
@@ -92,10 +92,10 @@
 
                         <div class="col-lg-6 d-flex flex-column justify-content-center">
                             <h1 class="header">
-                                <span class="text-primary">OranGo</span> Admin Panel
+                                <span class="text-primary">Scan2Go</span> Admin Panel
                             </h1>
 
-                            <p class="fs-4 mt-5 content-p1">This is an OranGo Admin Panel where we can manage
+                            <p class="fs-4 mt-5 content-p1">This is an Scan2Go Admin Panel where we can manage
                                 categories,
                                 products, customers, admins, receipts & carts.</p>
                             <p class="fs-4 content-p2">It is linked to a database and also to a mobile application of

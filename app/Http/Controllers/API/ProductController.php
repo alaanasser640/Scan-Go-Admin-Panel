@@ -14,7 +14,7 @@ use App\Traits\GeneralTrait;
 
 class ProductController extends Controller
 {
-    public $link = 'https://648d-41-235-174-92.eu.ngrok.io';
+    public $link = 'https://8503-41-235-192-235.ngrok-free.app/images/';
     use GeneralTrait;
     // all products
     public function products($id) // $customer_id

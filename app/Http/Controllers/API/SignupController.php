@@ -12,7 +12,7 @@ use App\Traits\GeneralTrait;
 
 class SignupController extends Controller
 {
-    public $link = 'https://648d-41-235-174-92.eu.ngrok.io';
+    public $link = 'https://8503-41-235-192-235.ngrok-free.app/images/';
     use GeneralTrait;
 
     public function login(Request $request)
@@ -44,7 +44,7 @@ class SignupController extends Controller
             'user' => $user,
             'token' => $token
         ];
-        return $this->returnData("customer data", $data, "login successfully", 200);
+        return $this->returnData("customerData", $data, "login successfully", 200);
         
     }
 
@@ -138,7 +138,7 @@ class SignupController extends Controller
        
 
         $customer->save();
-        return $this->returnData("customer data", $customer, "profile updated successfully", 200);
+        return $this->returnData("customerData", $customer, "profile updated successfully", 200);
 
     }
     

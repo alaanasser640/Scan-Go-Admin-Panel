@@ -33,7 +33,7 @@ class NoteController extends Controller
 
         $products = $query->get();
         foreach ($products as $product) {
-            $product->image = 'https://bb82-105-37-100-22.eu.ngrok.io/images/' . $product->image;
+            $product->image = 'https://8503-41-235-192-235.ngrok-free.app/images/' . $product->image;
         }
         
         return $this->returnData("notes", $products, "customer notes", 201);
